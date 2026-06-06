@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnIT Copilot - UTS Topik Khusus Hub</title>
+
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Marked.js for Proposal Markdown Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* ----------------------------------------------------
+       CORE DESIGN SYSTEM & VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      --bg-dark: #070a13;
+      --bg-card: rgba(15, 23, 42, 0.65);
+      --border-color: rgba(51, 65, 85, 0.45);
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.15);
+      --cyan-border: rgba(56, 189, 248, 0.4);
+
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.15);
+      --green-border: rgba(16, 185, 129, 0.4);
+
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.15);
+      --purple-border: rgba(168, 85, 247, 0.4);
+
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-header: 'Outfit', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative Ambient Glows */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(7, 10, 19, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, rgba(7, 10, 19, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ----------------------------------------------------
+       LAYOUT: HEADER & FOOTER
+       ---------------------------------------------------- */
+    header {
+      background: rgba(7, 10, 19, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #070a13;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+      font-family: var(--font-header);
+    }
+
+    .brand-info h1 {
+      font-family: var(--font-header);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-info h1 span {
+      background: linear-gradient(to right, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .student-badge {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      text-align: right;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(5px);
+    }
+
+    .student-badge:hover {
+      border-color: var(--cyan-border);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    }
+
+    .student-badge .name {
+      font-weight: 700;
+      color: var(--text-white);
+      font-size: 0.85rem;
+    }
+
+    .student-badge .nim-class {
+      font-family: var(--font-mono);
+      color: var(--cyan);
+      font-size: 0.75rem;
+      margin-top: 0.1rem;
+    }
+
+    /* ----------------------------------------------------
+       HERO BANNER
+       ---------------------------------------------------- */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3.5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cyan);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.05);
+    }
+
+    .hero-title {
+      font-family: var(--font-header);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, var(--text-white) 60%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.1));
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    /* ----------------------------------------------------
+       CARDS GRID
+       ---------------------------------------------------- */
+    main {
+      flex-grow: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem 4rem 2rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 1.25rem;
+      padding: 2.25rem 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      transition: var(--transition-smooth);
+    }
+
+    .card.slide::before { background: linear-gradient(to right, var(--cyan), transparent); }
+    .card.mockup::before { background: linear-gradient(to right, var(--green), transparent); }
+    .card.proposal::before { background: linear-gradient(to right, var(--purple), transparent); }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .card.slide:hover {
+      border-color: var(--cyan-border);
+      box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.15);
+    }
+
+    .card.mockup:hover {
+      border-color: var(--green-border);
+      box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
+    }
+
+    .card.proposal:hover {
+      border-color: var(--purple-border);
+      box-shadow: 0 15px 35px -10px rgba(168, 85, 247, 0.15);
+    }
+
+    .card-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+      transition: var(--transition-smooth);
+    }
+
+    .card.slide .card-icon {
+      background: var(--cyan-glow);
+      color: var(--cyan);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .card.mockup .card-icon {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .card.proposal .card-icon {
+      background: var(--purple-glow);
+      color: var(--purple);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .card-icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .card-title {
+      font-family: var(--font-header);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .card-btn {
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      border-radius: 0.75rem;
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .card.slide .card-btn {
+      background: var(--cyan);
+      color: #070a13;
+      border: none;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
+    }
+
+    .card.slide .card-btn:hover {
+      background: #7dd3fc;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .card.mockup .card-btn {
+      background: var(--green);
+      color: #070a13;
+      border: none;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+    }
+
+    .card.mockup .card-btn:hover {
+      background: #34d399;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .card.proposal .card-btn {
+      background: transparent;
+      color: var(--purple);
+      border: 1px solid var(--purple-border);
+    }
+
+    .card.proposal .card-btn:hover {
+      background: var(--purple-glow);
+      border-color: var(--purple);
+      color: var(--text-white);
+    }
+
+    .card-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      transition: var(--transition-smooth);
+    }
+
+    .card-btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ----------------------------------------------------
+       PROPOSAL MODAL & MARKDOWN VIEWER
+       ---------------------------------------------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      width: 90%;
+      max-width: 900px;
+      height: 85vh;
+      background: #0d1324;
+      border: 1px solid var(--border-color);
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95) translateY(20px);
+      transition: var(--transition-smooth);
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13, 19, 36, 0.6);
+    }
+
+    .modal-title {
+      font-family: var(--font-header);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+    }
+
+    .modal-close-btn svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .modal-body {
+      flex-grow: 1;
+      padding: 2.5rem 3rem;
+      overflow-y: auto;
+      line-height: 1.8;
+      color: #e2e8f0;
+      font-size: 1rem;
+    }
+
+    /* Markdown styling inside modal */
+    .proposal-content h1, .proposal-content h2, .proposal-content h3 {
+      font-family: var(--font-header);
+      color: var(--text-white);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .proposal-content h1 {
+      font-size: 2rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .proposal-content h2 {
+      font-size: 1.5rem;
+      color: var(--cyan);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      padding-bottom: 0.25rem;
+    }
+
+    .proposal-content h3 {
+      font-size: 1.2rem;
+      color: var(--green);
+    }
+
+    .proposal-content p {
+      margin-bottom: 1.25rem;
+      color: #cbd5e1;
+    }
+
+    .proposal-content ul, .proposal-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: #cbd5e1;
+    }
+
+    .proposal-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .proposal-content strong {
+      color: var(--text-white);
+    }
+
+    .proposal-content code {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #f472b6;
+    }
+
+    .proposal-content pre {
+      background: #020617;
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .proposal-content pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+    }
+
+    .proposal-content blockquote {
+      border-left: 4px solid var(--green);
+      background: var(--green-glow);
+      padding: 1rem 1.5rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .proposal-content blockquote p {
+      margin-bottom: 0;
+      color: #a7f3d0;
+    }
+
+    .proposal-content hr {
+      border: 0;
+      border-top: 1px solid var(--border-color);
+      margin: 2rem 0;
+    }
+
+    /* Table styles */
+    .proposal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .proposal-content th, .proposal-content td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .proposal-content th {
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-white);
+      font-weight: 700;
+    }
+
+    .proposal-content tr:nth-child(even) td {
+      background: rgba(15, 23, 42, 0.2);
+    }
+
+    /* ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 3rem;
+      background: rgba(7, 10, 19, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .footer-link:hover {
+      color: var(--cyan);
+    }
+
+    .footer-link svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 2.75rem;
+      }
+
+      header, footer {
+        padding: 1.25rem 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">LC</div>
+      <div class="brand-info">
+        <h1>LearnIT <span>Copilot</span></h1>
+        <p>UTS RPL Agentic AI</p>
+      </div>
+    </div>
+
+    <div class="student-badge">
+      <div class="name">Rivanzi Hidayatullah</div>
+      <div class="nim-class">NIM: 2311081034 &bull; Kelas: D4 RPL 3A</div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tag">UTS TOPIK KHUSUS</div>
+    <h2 class="hero-title">LearnIT Copilot Hub</h2>
+    <p class="hero-desc">
+      Platform pendamping pembelajaran IT adaptif dan persiapan karir vokasi bertenaga Agentic AI. Hub ini berisi seluruh berkas ujian tengah semester berupa presentasi interaktif, mockup antarmuka sistem, dan dokumen proposal teknis.
+    </p>
+  </section>
+
+  <!-- Main Grid -->
+  <main>
+    <div class="grid-container">
+
+      <!-- Card 1: Slide Presentasi -->
+      <div class="card slide">
+        <div class="card-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Slide Presentasi</h3>
+        <p class="card-desc">Slide presentasi berbasis HTML interaktif yang merinci konsep LearnIT Copilot, problem discovery (5 Whys), prompt engineering, pembagian kerja manusia-AI, dan implementasi Model Context Protocol (MCP).</p>
+        <a href="UTS_Agentic_AI_Presentation.html" class="card-btn">
+          Buka Slide Presentasi
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 2: Mockup Interaktif -->
+      <div class="card mockup">
+        <div class="card-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Mockup Hub</h3>
+        <p class="card-desc">Simulasi mockup antarmuka fungsional dari LearnIT Copilot. Jelajahi visualisasi fitur Adaptive Pathfinder, ulasan kode otomatis dari Autonomous Git Auditor (AGA), dan Interview Simulator.</p>
+        <a href="LearnIT_Copilot_Mockup.html" class="card-btn">
+          Jelajahi Mockup Hub
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Card 3: Proposal Solusi Digital -->
+      <div class="card proposal">
+        <div class="card-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Proposal Teknis</h3>
+        <p class="card-desc">Dokumen proposal lengkap yang memuat detail Problem Discovery, rubrik validasi solusi, analisis kompetitor terperinci (SWOT), pembagian kerja Agen-Siswa, dan visualisasi diagram alur arsitektur MCP.</p>
+        <button onclick="openProposalModal()" class="card-btn">
+          Baca Proposal Lengkap
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Proposal Modal -->
+  <div class="modal-overlay" id="proposalModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Proposal Solusi Digital - LearnIT Copilot</h3>
+        <button class="modal-close-btn" onclick="closeProposalModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="proposalMarkdownContent" class="proposal-content">
+          <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+            Memuat dokumen proposal...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-text">
+      &copy; 2026 Rivanzi Hidayatullah. UTS Topik Khusus - Rekayasa Perangkat Lunak Agentic AI.
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/rivzee/UTS_TOPSUS" target="_blank" class="footer-link">
+        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+        </svg>
+        Repository
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Modal controls
+    const modal = document.getElementById('proposalModal');
+    let proposalLoaded = false;
+
+    function openProposalModal() {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      if (!proposalLoaded) {
+        fetch('UTS_Proposal_LearnIT_Copilot.md')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Gagal mengambil file proposal');
+            }
+            return response.text();
+          })
+          .then(markdownText => {
+            // Render markdown to HTML
+            document.getElementById('proposalMarkdownContent').innerHTML = marked.parse(markdownText);
+            proposalLoaded = true;
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('proposalMarkdownContent').innerHTML = `
+              <div style="text-align: center; padding: 3rem; color: #ef4444;">
+                <svg style="width: 3rem; height: 3rem; margin-bottom: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <p>Gagal memuat dokumen proposal.</p>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-dim);">${error.message}</p>
+                <a href="UTS_Proposal_LearnIT_Copilot.md" target="_blank" style="display: inline-block; margin-top: 1rem; color: var(--purple); text-decoration: underline;">Buka file MD secara langsung</a>
+              </div>
+            `;
+          });
+      }
+    }
+
+    function closeProposalModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on click outside content
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        closeProposalModal();
+      }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeProposalModal();
+      }
+    });
+  </script>
+</body>
+
+</html>

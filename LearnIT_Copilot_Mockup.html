@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnIT Copilot - Interactive UTS Mockup Hub</title>
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------------------------------------------
+       DESIGN SYSTEM & VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --bg-terminal: #020617;
+      --border-color: rgba(51, 65, 85, 0.5);
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.15);
+      --cyan-border: rgba(56, 189, 248, 0.4);
+      
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.15);
+      --green-border: rgba(16, 185, 129, 0.4);
+      
+      --yellow: #f59e0b;
+      --yellow-glow: rgba(245, 158, 11, 0.15);
+      --yellow-border: rgba(245, 158, 11, 0.4);
+      
+      --red: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.15);
+      
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.15);
+      
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Gradients */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(9, 13, 22, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(9, 13, 22, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ----------------------------------------------------
+       LAYOUT: HEADER & HERO BANNER
+       ---------------------------------------------------- */
+    header {
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #090d16;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-info h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-info h1 span {
+      background: linear-gradient(to right, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .student-badge {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+    }
+
+    .student-badge .name {
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .student-badge .nim {
+      font-family: var(--font-mono);
+      color: var(--cyan);
+      font-size: 0.75rem;
+    }
+
+    /* ----------------------------------------------------
+       TAB MENU BAR
+       ---------------------------------------------------- */
+    .tab-bar-container {
+      background: rgba(17, 24, 39, 0.4);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: var(--font-main);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .tab-btn:hover {
+      color: var(--cyan);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    .tab-btn.active {
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      border-color: var(--cyan-border);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    }
+
+    .tab-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    /* Overall job readiness widget in Tabbar */
+    .readiness-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid var(--green-border);
+      padding: 0.4rem 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .readiness-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .readiness-bar-bg {
+      width: 100px;
+      height: 6px;
+      background: rgba(16, 185, 129, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .readiness-bar-fill {
+      height: 100%;
+      width: 72%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      border-radius: 3px;
+      transition: width 1s ease-in-out;
+    }
+
+    .readiness-percent {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    /* ----------------------------------------------------
+       MAIN WORKSPACE
+       ---------------------------------------------------- */
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mockup-pane {
+      display: none;
+      animation: fadeIn 0.4s ease-out forwards;
+      height: 100%;
+    }
+
+    .mockup-pane.active {
+      display: grid;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----------------------------------------------------
+       CARDS AND CONTAINER BLOCKS
+       ---------------------------------------------------- */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+    }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--cyan), transparent);
+    }
+
+    .panel-card.success::before {
+      background: linear-gradient(to right, var(--green), transparent);
+    }
+
+    .panel-card.warning::before {
+      background: linear-gradient(to right, var(--yellow), transparent);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      padding-bottom: 0.75rem;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-white);
+    }
+
+    .panel-title svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--cyan);
+    }
+
+    .panel-card.success .panel-title svg {
+      color: var(--green);
+    }
+
+    .panel-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ----------------------------------------------------
+       VIEW 1: PATHFINDER SPECIFICS
+       ---------------------------------------------------- */
+    .skill-tree-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .skill-node {
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .skill-node:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.5);
+      transform: translateX(4px);
+    }
+
+    .skill-node.completed {
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .skill-node.active-focus {
+      border-color: var(--yellow-border);
+      background: rgba(245, 158, 11, 0.03);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.05);
+      position: relative;
+    }
+
+    .skill-node.active-focus::after {
+      content: 'FOKUS AKTIF';
+      position: absolute;
+      right: 1rem;
+      top: -10px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      background: var(--yellow);
+      color: #000;
+      padding: 0.1rem 0.5rem;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-node.locked {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skill-icon-status {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .completed .skill-icon-status {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+    }
+
+    .active-focus .skill-icon-status {
+      background: var(--yellow-glow);
+      color: var(--yellow);
+      border: 1px solid var(--yellow-border);
+      animation: pulse-glow 2s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+    }
+
+    .locked .skill-icon-status {
+      background: rgba(100, 116, 139, 0.1);
+      color: var(--text-dim);
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+
+    .skill-details h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .skill-details p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .completed .skill-details h4 {
+      text-decoration: line-through;
+      color: var(--text-dim);
+    }
+
+    .arrow-right-icon {
+      color: var(--text-dim);
+      transition: var(--transition-smooth);
+    }
+
+    .skill-node:hover .arrow-right-icon {
+      color: var(--cyan);
+      transform: translateX(2px);
+    }
+
+    /* Pathfinder detail info on right side */
+    .mcp-query-box {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .mcp-query-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+    }
+
+    .mcp-status-tag {
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .mcp-query-text {
+      font-size: 0.85rem;
+      color: var(--text-white);
+      font-family: var(--font-mono);
+      background: #020617;
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .content-card-video {
+      background: #020617;
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      transition: var(--transition-smooth);
+    }
+
+    .content-card-video:hover {
+      border-color: var(--cyan-border);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.1);
+    }
+
+    .video-thumbnail-mock {
+      height: 180px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .video-thumbnail-mock::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 80%);
+    }
+
+    .play-btn-mock {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition-smooth);
+    }
+
+    .play-btn-mock:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+    }
+
+    .play-btn-mock svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: currentColor;
+      margin-left: 3px;
+    }
+
+    .video-badge-duration {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 0.75rem;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      z-index: 2;
+    }
+
+    .video-info-box {
+      padding: 1rem;
+    }
+
+    .video-channel {
+      font-size: 0.75rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .video-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.4;
+    }
+
+    .video-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .task-box {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1rem;
+    }
+
+    .task-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .task-header svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    .task-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-white);
+      margin-bottom: 1rem;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: var(--transition-smooth);
+    }
+
+    .action-btn.primary {
+      background: var(--cyan);
+      color: #090d16;
+      border: none;
+      box-shadow: 0 4px 10px rgba(56, 189, 248, 0.25);
+    }
+
+    .action-btn.primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+    }
+
+    .action-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-white);
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    /* ----------------------------------------------------
+       VIEW 2: GIT AUDITOR SPECIFICS
+       ---------------------------------------------------- */
+    .git-header-bar {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .repo-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .repo-name {
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .repo-branch {
+      background: rgba(100, 116, 139, 0.2);
+      color: var(--text-muted);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .commit-score-badge {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .terminal-window {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .terminal-header {
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .term-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .term-dot {
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+    }
+    .term-dot.red { background: var(--red); }
+    .term-dot.yellow { background: var(--yellow); }
+    .term-dot.green { background: var(--green); }
+
+    .term-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .code-diff-container {
+      margin-top: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .diff-line {
+      display: flex;
+      width: 100%;
+      padding: 0.1rem 0.5rem;
+      position: relative;
+      transition: background 0.15s ease;
+    }
+
+    .diff-num {
+      width: 2rem;
+      color: var(--text-dim);
+      user-select: none;
+      text-align: right;
+      padding-right: 0.75rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      margin-right: 0.75rem;
+    }
+
+    .diff-content {
+      flex-grow: 1;
+      white-space: pre;
+    }
+
+    .diff-line.deletion {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    .diff-line.addition {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+    }
+
+    .diff-line.addition.highlight-applied {
+      animation: flash-green 1.5s ease-out;
+    }
+
+    @keyframes flash-green {
+      0% { background: rgba(16, 185, 129, 0.6); }
+      100% { background: rgba(16, 185, 129, 0.15); }
+    }
+
+    .diff-tooltip {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--cyan-border);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: var(--font-main);
+      font-size: 0.7rem;
+      color: var(--cyan);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .diff-line:hover .diff-tooltip {
+      opacity: 1;
+    }
+
+    /* Auditor Side Panel */
+    .auditor-avatar-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(56, 189, 248, 0.03);
+      border: 1px solid var(--cyan-border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .auditor-avatar {
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #090d16;
+      font-weight: 800;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      position: relative;
+    }
+
+    .auditor-avatar::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--green);
+      border: 2px solid var(--bg-dark);
+      border-radius: 50%;
+      bottom: 0;
+      right: 0;
+    }
+
+    .auditor-meta h4 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .auditor-meta p {
+      font-size: 0.75rem;
+      color: var(--cyan);
+    }
+
+    .suggestion-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .suggestion-header {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--cyan);
+      letter-spacing: 0.5px;
+    }
+
+    .suggestion-text {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-white);
+    }
+
+    .suggestion-rationale {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--cyan);
+      padding-left: 0.75rem;
+      font-style: italic;
+    }
+
+    .suggestion-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .suggestion-btn {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-main);
+      transition: var(--transition-smooth);
+    }
+
+    .suggestion-btn.accept {
+      background: var(--green);
+      color: #090d16;
+      border: none;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+    }
+
+    .suggestion-btn.accept:hover {
+      background: #34d399;
+      transform: translateY(-2px);
+    }
+
+    .suggestion-btn.query {
+      background: transparent;
+      border: 1px solid var(--cyan-border);
+      color: var(--cyan);
+    }
+
+    .suggestion-btn.query:hover {
+      background: var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    .suggestion-btn.ignore {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .suggestion-btn.ignore:hover {
+      background: rgba(255, 255, 255, 0.02);
+      transform: translateY(-2px);
+    }
+
+    /* ----------------------------------------------------
+       VIEW 3: INTERVIEW SIMULATOR SPECIFICS
+       ---------------------------------------------------- */
+    .interview-container {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 2rem;
+      height: 600px;
+    }
+
+    .chat-panel {
+      border: 1px solid var(--border-color);
+      background: var(--bg-terminal);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .chat-header {
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-title-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse-dot-anim 1.5s infinite;
+    }
+
+    @keyframes pulse-dot-anim {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .chat-title-info span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+
+    .interview-role-tag {
+      background: var(--purple-glow);
+      color: var(--purple);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 700;
+    }
+
+    .chat-body {
+      flex-grow: 1;
+      padding: 1.25rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      scroll-behavior: smooth;
+    }
+
+    .message-bubble {
+      max-width: 80%;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      line-height: 1.5;
+      font-size: 0.88rem;
+      animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .message-bubble.ai {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-color);
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    .message-bubble.user {
+      background: var(--cyan-glow);
+      border: 1px solid var(--cyan-border);
+      align-self: flex-end;
+      border-top-right-radius: 0;
+      color: var(--text-white);
+    }
+
+    .message-bubble.evaluation {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid var(--green-border);
+      border-left: 4px solid var(--green);
+      align-self: center;
+      max-width: 95%;
+      width: 100%;
+    }
+
+    .message-bubble.evaluation.warning {
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid var(--yellow-border);
+      border-left: 4px solid var(--yellow);
+    }
+
+    .bubble-meta {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.35rem;
+    }
+
+    .ai .bubble-meta { color: var(--cyan); }
+    .user .bubble-meta { color: var(--purple); }
+    .evaluation .bubble-meta { color: var(--green); }
+    .evaluation.warning .bubble-meta { color: var(--yellow); }
+
+    .evaluation-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .eval-score-pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    .evaluation .eval-score-pill {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+    }
+
+    .evaluation.warning .eval-score-pill {
+      background: var(--yellow-glow);
+      color: var(--yellow);
+      border: 1px solid var(--yellow-border);
+    }
+
+    /* Message loading state */
+    .typing-loader {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.5rem 0.25rem;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes wave {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+
+    /* Chat input & option panels */
+    .chat-input-panel {
+      padding: 1.25rem;
+      border-top: 1px solid var(--border-color);
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .input-instruction {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option-card-btn {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      color: var(--text-white);
+      text-align: left;
+      font-family: var(--font-main);
+      font-size: 0.82rem;
+      cursor: pointer;
+      line-height: 1.4;
+      display: flex;
+      gap: 0.75rem;
+      transition: var(--transition-smooth);
+    }
+
+    .option-card-btn:hover {
+      border-color: var(--cyan-border);
+      background: var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    .option-card-btn strong {
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .option-card-btn.correct:hover strong {
+      color: var(--green);
+    }
+
+    .option-card-btn.wrong:hover strong {
+      color: var(--yellow);
+    }
+
+    /* Chat custom text field */
+    .custom-input-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-text-input {
+      flex-grow: 1;
+      background: #020617;
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      padding: 0.6rem 1rem;
+      color: var(--text-white);
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .chat-text-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+
+    .send-msg-btn {
+      background: var(--cyan);
+      color: #090d16;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-main);
+      transition: var(--transition-smooth);
+    }
+
+    .send-msg-btn:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
+    }
+
+    /* Wawancara score sidebar panel */
+    .perf-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .circular-progress-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+
+    .circular-svg {
+      width: 120px;
+      height: 120px;
+      transform: rotate(-90deg);
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 8;
+    }
+
+    .circle-fill {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 314.16;
+      stroke-dashoffset: 314.16; /* Dynamic offset via JS */
+      transition: stroke-dashoffset 1.5s ease-in-out, stroke 1s ease;
+      filter: drop-shadow(0 0 8px var(--cyan-border));
+    }
+
+    .circle-text {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .perf-metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .perf-metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      padding-bottom: 0.4rem;
+    }
+
+    .perf-metric-name {
+      color: var(--text-muted);
+    }
+
+    .perf-metric-val {
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .perf-tips {
+      background: rgba(168, 85, 247, 0.03);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0.75rem;
+      padding: 0.85rem;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .perf-tips strong {
+      color: var(--purple);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 2rem;
+      background: rgba(9, 13, 22, 0.9);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-right a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-right a:hover {
+      color: var(--cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================
+       HEADER SECTION
+       ==================================================== -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">L</div>
+      <div class="brand-info">
+        <h1>LearnIT <span>Copilot</span></h1>
+        <p>Asisten Pembelajaran IT Adaptif & Kesiapan Karir</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================
+       TAB MENU BAR & STATS WIDGET
+       ==================================================== -->
+  <div class="tab-bar-container">
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchPane('pathfinder', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 01.553-.894L9 2m0 18l6-3m-6 3V2m6 15l5.447 2.724A1 1 0 0021 18.882V8.118a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 2"></path></svg>
+        1. Adaptive Pathfinder
+      </button>
+      <button class="tab-btn" onclick="switchPane('git-auditor', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        2. Autonomous Git Auditor
+      </button>
+      <button class="tab-btn" onclick="switchPane('interview', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        3. Wawancara Cerdas
+      </button>
+    </div>
+    
+    <div class="readiness-widget">
+      <span class="readiness-label">Kesiapan Kerja:</span>
+      <div class="readiness-bar-bg">
+        <div class="readiness-bar-fill" id="overall-progress-bar"></div>
+      </div>
+      <span class="readiness-percent" id="overall-progress-pct">72%</span>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       MAIN WORKSPACE PANES
+       ==================================================== -->
+  <main>
+
+    <!-- --------------------------------------------------
+         PANE 1: ADAPTIVE PATHFINDER
+         -------------------------------------------------- -->
+    <div class="mockup-pane dashboard-grid active" id="pane-pathfinder">
+      <!-- Left Side: Skill Tree -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h3 class="panel-title">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+              PETA BELAJAR (SKILL TREE)
+            </h3>
+            <span class="panel-subtitle">Spesialisasi: Junior Full-Stack Web Developer</span>
+          </div>
+          <span class="badge-yes" style="font-size:0.7rem;">LEVEL 5</span>
+        </div>
+        
+        <div class="skill-tree-list">
+          <div class="skill-node completed">
+            <div class="skill-info">
+              <div class="skill-icon-status">✓</div>
+              <div class="skill-details">
+                <h4>1. Dasar HTML, CSS & JavaScript ES6+</h4>
+                <p>Variabel, DOM Manipulation, Async/Await, Array Methods</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon">→</span>
+          </div>
+          
+          <div class="skill-node completed">
+            <div class="skill-info">
+              <div class="skill-icon-status">✓</div>
+              <div class="skill-details">
+                <h4>2. React Hooks & Component Lifecycle</h4>
+                <p>useState, useEffect, Custom Hooks, Conditional Rendering</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon">→</span>
+          </div>
+
+          <div class="skill-node active-focus">
+            <div class="skill-info">
+              <div class="skill-icon-status">●</div>
+              <div class="skill-details">
+                <h4>3. State Management (Zustand / Redux)</h4>
+                <p>Global Store, Actions, Selectors, Persist middleware</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon" style="color: var(--yellow);">→</span>
+          </div>
+
+          <div class="skill-node locked">
+            <div class="skill-info">
+              <div class="skill-icon-status">🔒</div>
+              <div class="skill-details">
+                <h4>4. Next.js App Router & Server Actions</h4>
+                <p>Server vs Client components, API Routes, Middleware</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon">→</span>
+          </div>
+
+          <div class="skill-node locked">
+            <div class="skill-info">
+              <div class="skill-icon-status">🔒</div>
+              <div class="skill-details">
+                <h4>5. REST API & Database Integration</h4>
+                <p>Express.js, Prisma ORM, PostgreSQL, Relational Schema</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon">→</span>
+          </div>
+
+          <div class="skill-node locked">
+            <div class="skill-info">
+              <div class="skill-icon-status">🔒</div>
+              <div class="skill-details">
+                <h4>6. CI/CD, Docker & Cloud Deployment</h4>
+                <p>GitHub Actions, Dockerfile, Vercel, VPS Deployment</p>
+              </div>
+            </div>
+            <span class="arrow-right-icon">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Active Focus Material Detail -->
+      <div class="panel-card success">
+        <div class="panel-header">
+          <div>
+            <h3 class="panel-title">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              MATERI PEMBELAJARAN ADAPTIF
+            </h3>
+            <span class="panel-subtitle">Direkomendasikan secara otonom oleh LLM & YouTube MCP Server</span>
+          </div>
+          <span class="mcp-status-tag">YouTube MCP Connected</span>
+        </div>
+
+        <div class="mcp-query-box">
+          <div class="mcp-query-header">
+            <span>Query Pencarian MCP:</span>
+            <span style="color:var(--text-dim);">Real-time API Call</span>
+          </div>
+          <div class="mcp-query-text">youtube.search("Zustand State Management tutorial", lang: "id", creator: "WPU")</div>
+        </div>
+
+        <div class="content-card-video">
+          <div class="video-thumbnail-mock">
+            <div class="play-btn-mock" onclick="alert('Memutar video simulasi: Panduan Lengkap Zustand oleh WPU!')">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+            </div>
+            <span class="video-badge-duration">20:15</span>
+          </div>
+          <div class="video-info-box">
+            <div class="video-channel">Web Programming UNPAS (WPU)</div>
+            <div class="video-title">Panduan Lengkap Zustand - State Management React Termudah & Tercepat</div>
+            <div class="video-desc">Belajar cara instalasi, setup global store, & integrasi Zustand state ke dalam React/Next.js app.</div>
+          </div>
+        </div>
+
+        <div class="task-box">
+          <div class="task-header">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            Tugas Praktik Mandiri
+          </div>
+          <p class="task-desc">Buatlah aplikasi e-commerce keranjang belanja sederhana (Shopping Cart) menggunakan Zustand untuk mengelola data cart, tambah item, hapus item, dan hitung subtotal.</p>
+          <div class="task-actions">
+            <button class="action-btn primary" onclick="switchPane('git-auditor', document.querySelectorAll('.tab-btn')[1])">Hubungkan Repositori Tugas</button>
+            <button class="action-btn secondary" onclick="alert('Membuka dokumentasi API Zustand resmi...')">Dokumentasi Zustand</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------------------------------------------------
+         PANE 2: AUTONOMOUS GIT AUDITOR
+         -------------------------------------------------- -->
+    <div class="mockup-pane dashboard-grid" id="pane-git-auditor">
+      <!-- Code Diff Panel -->
+      <div class="panel-card">
+        <div class="panel-header" style="margin-bottom:0.75rem; border:none; padding:0;">
+          <div>
+            <h3 class="panel-title">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              AUTONOMOUS GIT AUDITOR (AGA)
+            </h3>
+            <span class="panel-subtitle">Tinjauan otonom baris-per-baris via GitHub Webhook & MCP</span>
+          </div>
+        </div>
+
+        <div class="git-header-bar">
+          <div class="repo-info">
+            <svg style="width:1.2rem;height:1.2rem;color:var(--text-muted);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+            <span class="repo-name">rianwibowo/e-commerce-zustand</span>
+            <span class="repo-branch">PR #1</span>
+          </div>
+          <div class="commit-score-badge" id="audit-score">
+            <span>Score:</span>
+            <strong>B+</strong>
+          </div>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="term-dots">
+              <div class="term-dot red"></div>
+              <div class="term-dot yellow"></div>
+              <div class="term-dot green"></div>
+            </div>
+            <div class="term-title">useCartStore.js - Code Diff Viewer</div>
+            <div style="width:2rem;"></div>
+          </div>
+          <div class="terminal-body" style="padding:0;">
+            <div class="code-diff-container" id="code-diff-pane">
+              <!-- Line 14 -->
+              <div class="diff-line">
+                <span class="diff-num">14</span>
+                <span class="diff-content">  fetchProducts: async () => {</span>
+              </div>
+              
+              <!-- Line 15 (Deleted) -->
+              <div class="diff-line deletion" id="code-deleted-1">
+                <span class="diff-num">15</span>
+                <span class="diff-content">-     const res = await fetch('/api/products');</span>
+                <div class="diff-tooltip">Kode lama: Fetch data langsung tanpa status loading & try-catch</div>
+              </div>
+              <div class="diff-line deletion" id="code-deleted-2">
+                <span class="diff-num">16</span>
+                <span class="diff-content">-     const data = await res.json();</span>
+              </div>
+              <div class="diff-line deletion" id="code-deleted-3">
+                <span class="diff-num">17</span>
+                <span class="diff-content">-     set({ products: data });</span>
+              </div>
+
+              <!-- Added Lines (Mockup Recommendation) -->
+              <div class="diff-line addition" id="code-added-1">
+                <span class="diff-num">15</span>
+                <span class="diff-content">+     try {</span>
+                <div class="diff-tooltip">Saran AI: Tambah try-catch & handle status loading/error</div>
+              </div>
+              <div class="diff-line addition" id="code-added-2">
+                <span class="diff-num">16</span>
+                <span class="diff-content">+       set({ loading: true, error: null });</span>
+              </div>
+              <div class="diff-line addition" id="code-added-3">
+                <span class="diff-num">17</span>
+                <span class="diff-content">+       const res = await fetch('/api/products');</span>
+              </div>
+              <div class="diff-line addition" id="code-added-4">
+                <span class="diff-num">18</span>
+                <span class="diff-content">+       if (!res.ok) throw new Error('Gagal mengambil data produk');</span>
+              </div>
+              <div class="diff-line addition" id="code-added-5">
+                <span class="diff-num">19</span>
+                <span class="diff-content">+       const data = await res.json();</span>
+              </div>
+              <div class="diff-line addition" id="code-added-6">
+                <span class="diff-num">20</span>
+                <span class="diff-content">+       set({ products: data, loading: false });</span>
+              </div>
+              <div class="diff-line addition" id="code-added-7">
+                <span class="diff-num">21</span>
+                <span class="diff-content">+     } catch (err) {</span>
+              </div>
+              <div class="diff-line addition" id="code-added-8">
+                <span class="diff-num">22</span>
+                <span class="diff-content">+       set({ error: err.message, loading: false });</span>
+              </div>
+              <div class="diff-line addition" id="code-added-9">
+                <span class="diff-num">23</span>
+                <span class="diff-content">+     }</span>
+              </div>
+              
+              <!-- Line 24 -->
+              <div class="diff-line">
+                <span class="diff-num">24</span>
+                <span class="diff-content">  },</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: AI Auditor Feedback and Actions -->
+      <div class="panel-card success">
+        <div class="panel-header">
+          <div class="auditor-avatar-section">
+            <div class="auditor-avatar">AI</div>
+            <div class="auditor-meta">
+              <h4>Senior Web Reviewer Agent</h4>
+              <p>Otonom PR Auditor</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="suggestion-box">
+          <span class="suggestion-header">Analisis AI (Temuan Audit)</span>
+          <p class="suggestion-text">"Saya menemukan masalah pada metode fetch data asinkronus Zustand store Anda."</p>
+          <div class="suggestion-rationale">
+            <strong>Rekomendasi Rationale:</strong>
+            "Anda lupa menangani status loading, error, dan validasi response status HTTP. Hal ini bisa menyebabkan UI freeze atau error tidak termanifestasi dengan baik kepada pengguna saat koneksi gagal."
+          </div>
+          
+          <div class="suggestion-actions">
+            <button class="suggestion-btn accept" onclick="applyRefactoring()">
+              <svg style="width:1.1rem;height:1.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+              Terima & Terapkan Refactoring
+            </button>
+            
+            <button class="suggestion-btn query" onclick="alert('Mengirim pesan ke AI Agent: Jelaskan arsitektur global store Zustand dalam clean architecture.')">
+              <svg style="width:1.1rem;height:1.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Tanya AI Mengapa
+            </button>
+            
+            <button class="suggestion-btn ignore" onclick="alert('Perubahan diabaikan. Pull Request tetap dipertahankan.')">
+              Abaikan Review
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------------------------------------------------
+         PANE 3: INTERVIEW SIMULATOR
+         -------------------------------------------------- -->
+    <div class="mockup-pane interview-container" id="pane-interview">
+      <!-- Chat Interface Left Side -->
+      <div class="chat-panel">
+        <div class="chat-header">
+          <div class="chat-title-info">
+            <div class="pulse-dot"></div>
+            <span>SIMULATOR WAWANCARA KERJA IT V1.0</span>
+          </div>
+          <span class="interview-role-tag">Target: Junior Full-Stack Web Dev</span>
+        </div>
+
+        <div class="chat-body" id="chat-stream">
+          <!-- AI Init Message -->
+          <div class="message-bubble ai">
+            <div class="bubble-meta">Interviewer AI</div>
+            Halo Rian. Saya melihat di repositori <strong>e-commerce-zustand</strong> Anda, Anda mengimplementasikan Zustand untuk management state. Bisa Anda jelaskan mengapa Anda memilih Zustand dibanding Redux Toolkit untuk kasus manajemen state di aplikasi e-commerce tersebut?
+          </div>
+
+          <!-- Target container for next steps -->
+          <div id="chat-interactive-placeholder"></div>
+        </div>
+
+        <div class="chat-input-panel">
+          <div class="input-instruction" id="input-helper-label">Pilih Opsi Jawaban Terbaik:</div>
+          
+          <!-- Choices list -->
+          <div class="option-list" id="choices-container">
+            <button class="option-card-btn correct" onclick="selectAnswer('A')">
+              <strong>Opsi A</strong>
+              <span>"Saya memilih Zustand karena boilerplate-nya sangat sedikit, konfigurasinya sederhana, tidak membutuhkan Context Provider di root app, dan kinerjanya sangat cepat karena tidak memicu re-render di komponen yang tidak berlangganan."</span>
+            </button>
+            
+            <button class="option-card-btn wrong" onclick="selectAnswer('B')">
+              <strong>Opsi B</strong>
+              <span>"Saya pilih Zustand karena Redux itu terlalu kuno & lambat, sedangkan Zustand itu modern, fiturnya lebih canggih, dan semua programmer React professional sekarang sudah tidak ada yang pakai Redux lagi."</span>
+            </button>
+          </div>
+
+          <!-- Text message field mockup -->
+          <div class="custom-input-row" id="text-input-field" style="display:none;">
+            <input type="text" class="chat-text-input" id="custom-text-input" placeholder="Ketik tanggapan Anda di sini...">
+            <button class="send-msg-btn" onclick="submitCustomText()">
+              <span>Kirim</span>
+              <svg style="width:0.85rem;height:0.85rem;" fill="currentColor" viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Dashboard Right Side -->
+      <div class="perf-card">
+        <div class="panel-header" style="border:none; padding:0; margin-bottom:0.5rem;">
+          <h3 class="panel-title" style="color:var(--purple)">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            EVALUASI KEMAMPUAN NYATA
+          </h3>
+        </div>
+
+        <div class="circular-progress-container">
+          <div style="position:relative; display:flex; align-items:center; justify-content:center;">
+            <svg class="circular-svg">
+              <circle class="circle-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="circle-fill" id="circular-score-fill" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="circle-text" id="circular-score-val">0</div>
+          </div>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-top:0.75rem;">Skor Jawaban Terakhir</span>
+        </div>
+
+        <div class="perf-metric-row">
+          <div class="perf-metric-item">
+            <span class="perf-metric-name">Pemahaman Teori</span>
+            <span class="perf-metric-val" id="metric-theory">-</span>
+          </div>
+          <div class="perf-metric-item">
+            <span class="perf-metric-name">Logika Arsitektural</span>
+            <span class="perf-metric-val" id="metric-logic">-</span>
+          </div>
+          <div class="perf-metric-item">
+            <span class="perf-metric-name">Kedewasaan Dev</span>
+            <span class="perf-metric-val" id="metric-maturity">-</span>
+          </div>
+        </div>
+
+        <div class="perf-tips">
+          <strong>💡 Tips Wawancara:</strong>
+          <span id="interview-tips-text">Pilihlah jawaban yang menyajikan argumen teknis terukur (seperti data flow, rendering footprint, modularitas), bukan sekadar opini subjektif "bagus/jelek".</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+  <footer>
+    <div class="footer-left">
+      <span>Mockup UTS RPL Topik Khusus</span>
+      <span style="color:var(--text-dim);">•</span>
+      <span>LearnIT Copilot v1.0</span>
+    </div>
+    <div class="footer-right">
+      <span style="color:var(--cyan); font-weight:700;">D4 Teknologi Rekayasa Perangkat Lunak</span>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       INTERACTIVE JAVASCRIPT
+       ==================================================== -->
+  <script>
+    // Tab Pane Navigation
+    function switchPane(paneId, btnElement) {
+      // Hide all panes
+      const panes = document.querySelectorAll('.mockup-pane');
+      panes.forEach(pane => pane.classList.remove('active'));
+      
+      // Show active pane
+      document.getElementById(`pane-${paneId}`).classList.add('active');
+      
+      // Update Tab button active state
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+      
+      // Custom actions for pane activation
+      if (paneId === 'interview') {
+        // Reset score animations
+        setCircularScore(0);
+      }
+    }
+
+    // Git Auditor Refactoring Animation
+    function applyRefactoring() {
+      // Highlight new lines
+      const addedLines = [
+        'code-added-1', 'code-added-2', 'code-added-3', 'code-added-4',
+        'code-added-5', 'code-added-6', 'code-added-7', 'code-added-8',
+        'code-added-9'
+      ];
+      
+      // Hide deleted lines
+      document.getElementById('code-deleted-1').style.display = 'none';
+      document.getElementById('code-deleted-2').style.display = 'none';
+      document.getElementById('code-deleted-3').style.display = 'none';
+      
+      // Flash added lines with green glow
+      addedLines.forEach(id => {
+        const line = document.getElementById(id);
+        line.classList.add('highlight-applied');
+      });
+      
+      // Update score badge
+      const scoreBadge = document.getElementById('audit-score');
+      scoreBadge.style.background = 'rgba(16, 185, 129, 0.25)';
+      scoreBadge.style.borderColor = 'var(--green)';
+      scoreBadge.innerHTML = '<span>Score:</span> <strong>A</strong>';
+      
+      // Update progress bar
+      document.getElementById('overall-progress-bar').style.width = '78%';
+      document.getElementById('overall-progress-pct').textContent = '78%';
+      
+      alert('Saran refactoring berhasil diterapkan langsung ke PR GitHub! Skor repositori Rian meningkat menjadi A.');
+    }
+
+    // Circular progress handler
+    function setCircularScore(score) {
+      const circleFill = document.getElementById('circular-score-fill');
+      const scoreVal = document.getElementById('circular-score-val');
+      
+      // Dashoffset calculation (Circumference of r=50 is ~314.16)
+      const maxOffset = 314.16;
+      const offset = maxOffset - (score / 100) * maxOffset;
+      
+      circleFill.style.strokeDashoffset = offset;
+      
+      // Color matching based on score
+      if (score >= 80) {
+        circleFill.style.stroke = 'var(--green)';
+      } else if (score >= 50) {
+        circleFill.style.stroke = 'var(--yellow)';
+      } else {
+        circleFill.style.stroke = 'var(--red)';
+      }
+      
+      // Count-up animation
+      let startScore = 0;
+      const duration = 1000; // 1 second
+      const stepTime = 10;
+      const step = (score / duration) * stepTime;
+      
+      const timer = setInterval(() => {
+        startScore += step;
+        if (startScore >= score) {
+          clearInterval(timer);
+          scoreVal.textContent = Math.round(score);
+        } else {
+          scoreVal.textContent = Math.round(startScore);
+        }
+      }, stepTime);
+    }
+
+    // Interview Simulator Interactive game
+    function selectAnswer(option) {
+      const placeholder = document.getElementById('chat-interactive-placeholder');
+      const choicesContainer = document.getElementById('choices-container');
+      const helperLabel = document.getElementById('input-helper-label');
+      const chatStream = document.getElementById('chat-stream');
+      
+      if (option === 'A') {
+        // Option A selected
+        placeholder.innerHTML = `
+          <!-- Rian Answer -->
+          <div class="message-bubble user" style="margin-top: 1rem;">
+            <div class="bubble-meta">Rian Wibowo</div>
+            Saya memilih Zustand karena boilerplate-nya sangat sedikit, konfigurasinya sederhana, tidak membutuhkan Context Provider di root app, dan kinerjanya sangat cepat karena tidak memicu re-render di komponen yang tidak berlangganan.
+          </div>
+          
+          <!-- AI evaluation -->
+          <div class="message-bubble evaluation" style="margin-top: 1.25rem;">
+            <div class="evaluation-header-row">
+              <div class="bubble-meta">Evaluasi AI (Senior Web Architect)</div>
+              <span class="eval-score-pill">Skor: 85/100 (SANGAT BAGUS!)</span>
+            </div>
+            <strong>Umpan Balik:</strong> Jawaban tepat sasaran dan sangat berbobot teknis! Anda menjelaskan aspek modularitas dan optimalisasi rendering (subskripsi) dengan tepat.<br><br>
+            <strong>Tips Tambahan:</strong> Jelaskan juga mengenai closures internal Zustand dan perbandingan bundle size-nya untuk nilai bonus.
+          </div>
+
+          <!-- Loading AI typing next question -->
+          <div class="message-bubble ai" id="typing-next-question" style="margin-top: 1.25rem;">
+            <div class="bubble-meta">Interviewer AI</div>
+            <div class="typing-loader">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+          </div>
+        `;
+        
+        // Disable option buttons to prevent double-click
+        choicesContainer.style.display = 'none';
+        helperLabel.textContent = 'Menunggu tanggapan AI...';
+        chatStream.scrollTop = chatStream.scrollHeight;
+        
+        // Update Score panel
+        setCircularScore(85);
+        document.getElementById('metric-theory').textContent = 'Sangat Bagus (88)';
+        document.getElementById('metric-logic').textContent = 'Kuat (84)';
+        document.getElementById('metric-maturity').textContent = 'Matang (83)';
+        document.getElementById('interview-tips-text').textContent = "Luar biasa! Jawaban Anda menunjukkan pemahaman state management berbasis subskripsi granular React.";
+
+        // Simulate typing delay for next question
+        setTimeout(() => {
+          const typingBubble = document.getElementById('typing-next-question');
+          typingBubble.innerHTML = `
+            <div class="bubble-meta">Interviewer AI</div>
+            Bagus sekali Rian! Sekarang, bagaimana cara Anda mengoptimalkan render performance di React menggunakan selectors dari Zustand?
+          `;
+          
+          // Switch to custom text field mockup
+          helperLabel.textContent = 'Tulis Tanggapan Anda:';
+          document.getElementById('text-input-field').style.style = 'flex';
+          document.getElementById('text-input-field').style.display = 'flex';
+          chatStream.scrollTop = chatStream.scrollHeight;
+        }, 2000);
+        
+      } else if (option === 'B') {
+        // Option B selected (Poor)
+        placeholder.innerHTML = `
+          <!-- Rian Answer -->
+          <div class="message-bubble user" style="margin-top: 1rem;">
+            <div class="bubble-meta">Rian Wibowo</div>
+            Saya pilih Zustand karena Redux itu terlalu kuno & lambat, sedangkan Zustand itu modern, fiturnya lebih canggih, dan semua programmer React professional sekarang sudah tidak ada yang pakai Redux lagi.
+          </div>
+          
+          <!-- AI evaluation -->
+          <div class="message-bubble evaluation warning" style="margin-top: 1.25rem;">
+            <div class="evaluation-header-row">
+              <div class="bubble-meta" style="color:var(--yellow)">Evaluasi AI (Senior Web Architect)</div>
+              <span class="eval-score-pill">Skor: 45/100 (PERLU EVALUASI)</span>
+            </div>
+            <strong>Kritik:</strong> Jawaban Anda terlalu subjektif. Menyebut teknologi mapan industri seperti Redux "kuno/lambat" tanpa metrik terukur (seperti boilerplate overhead atau bundle footprint) menunjukkan kurangnya kedewasaan rekayasa software.<br><br>
+            <strong>Tips Perbaikan:</strong> Silakan coba lagi dan gunakan argumen teknis.
+          </div>
+        `;
+        
+        chatStream.scrollTop = chatStream.scrollHeight;
+        
+        // Update Score panel
+        setCircularScore(45);
+        document.getElementById('metric-theory').textContent = 'Cukup (50)';
+        document.getElementById('metric-logic').textContent = 'Lemah (40)';
+        document.getElementById('metric-maturity').textContent = 'Rendah (45)';
+        document.getElementById('interview-tips-text').textContent = "Kritikan rekruter: Hindari mendiskreditkan library industri tanpa analisis komparatif performa.";
+
+        // Prompt retry
+        helperLabel.textContent = 'Skor Rendah. Coba Lagi dengan Opsi Lain:';
+      }
+    }
+
+    function submitCustomText() {
+      const textInput = document.getElementById('custom-text-input');
+      const val = textInput.value.trim();
+      if (!val) return;
+      
+      const chatStream = document.getElementById('chat-stream');
+      const placeholder = document.getElementById('chat-interactive-placeholder');
+      
+      // Append user custom text
+      const userBubble = document.createElement('div');
+      userBubble.className = 'message-bubble user';
+      userBubble.style.marginTop = '1rem';
+      userBubble.innerHTML = `
+        <div class="bubble-meta">Rian Wibowo</div>
+        ${val}
+      `;
+      chatStream.appendChild(userBubble);
+      textInput.value = '';
+      chatStream.scrollTop = chatStream.scrollHeight;
+      
+      // Append AI response
+      setTimeout(() => {
+        const aiResponseBubble = document.createElement('div');
+        aiResponseBubble.className = 'message-bubble evaluation';
+        aiResponseBubble.style.marginTop = '1.25rem';
+        aiResponseBubble.innerHTML = `
+          <div class="evaluation-header-row">
+            <div class="bubble-meta">Evaluasi AI Akhir</div>
+            <span class="eval-score-pill" style="background:var(--green-glow); color:var(--green);">LULUS KUALIFIKASI (90/100)</span>
+          </div>
+          <strong>Umpan Balik Kelayakan:</strong> Anda berhasil menjelaskan penggunaan selectors untuk mencegah re-rendering yang tidak perlu secara detail. Simulasi Wawancara telah selesai.<br><br>
+          <strong>Hasil Kelayakan Kerja:</strong> Status Kesiapan Anda saat ini adalah <strong>Job-Ready (Junior Web Developer)</strong>. AI merekomendasikan Anda untuk langsung melamar lowongan magang industri terintegrasi.
+        `;
+        chatStream.appendChild(aiResponseBubble);
+        
+        // Update readiness score in header
+        document.getElementById('overall-progress-bar').style.width = '90%';
+        document.getElementById('overall-progress-pct').textContent = '90%';
+        
+        // Update score circles
+        setCircularScore(90);
+        document.getElementById('metric-theory').textContent = 'Sangat Bagus (92)';
+        document.getElementById('metric-logic').textContent = 'Sangat Kuat (90)';
+        document.getElementById('metric-maturity').textContent = 'Sangat Tinggi (88)';
+        
+        document.getElementById('text-input-field').style.display = 'none';
+        document.getElementById('input-helper-label').textContent = 'Simulasi Selesai';
+        
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
