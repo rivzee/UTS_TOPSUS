@@ -1,5 +1,5 @@
 # PROPOSAL SOLUSI DIGITAL BERBASIS AGENTIC AI
-**TUGAS UTS - REKAYASA PERANGKAT LUNAK AGENTIC AI (SEMESTER 5)**
+**TUGAS UTS - REKAYASA PERANGKAT LUNAK AGENTIC AI (SEMESTER 6)**
 
 ---
 
@@ -17,13 +17,13 @@
 Banyak mahasiswa IT, khususnya di tingkat politeknik/vokasi, mengalami fenomena *tutorial hell* dan kebingungan arah belajar karena terlalu luasnya ekosistem teknologi. Kurikulum kampus yang bersifat umum dan lambat diperbarui sering kali menyisakan *skill gap* (kesenjangan keterampilan) yang besar dengan standar industri. Mahasiswa kesulitan mengukur apakah portofolio kode yang mereka bangun sudah memenuhi standar industri (*clean code, secure, scalable*) karena tidak adanya akses ke mentor profesional untuk melakukan *code review* personal secara berkala.
 
 * **Siapa Target Penggunanya?**
-  Mahasiswa aktif rumpun IT (Teknik Informatika, RPL, Sistem Informasi) Semester 5 yang sedang mempersiapkan diri untuk magang industri atau transisi ke dunia kerja profesional.
+  Mahasiswa aktif rumpun IT (Teknik Informatika, RPL, Sistem Informasi) Semester 6 yang sedang mempersiapkan diri untuk magang industri atau transisi ke dunia kerja profesional.
 * **Seberapa Besar Masalah Tersebut?**
   Menurut data survei industri, lebih dari 65% lulusan baru IT memerlukan waktu pelatihan tambahan (*retraining*) selama 3-6 bulan setelah diterima kerja karena kode mereka belum berstandar industri.
 
 ### B. User Persona (Detail)
 * **Nama:** Rian Wibowo (21 Tahun)
-* **Profil:** Mahasiswa D4 Teknik Informatika, Semester 5 di salah satu Politeknik Negeri.
+* **Profil:** Mahasiswa D4 Teknik Informatika, Semester 6 di salah satu Politeknik Negeri.
 * **Tujuan (Goals):**
   * Ingin menguasai spesialisasi **Full-Stack Web Developer** (React/Next.js & Node.js) yang siap kerja dalam waktu 6 bulan.
   * Ingin membangun portofolio riil di GitHub yang diakui dan dinilai tinggi oleh rekruter perusahaan teknologi nasional.
@@ -56,12 +56,12 @@ Menggunakan metode **5 Whys** untuk menemukan akar masalah pengangguran/kesulita
 *Mahasiswa bertindak sebagai Founder dan memosisikan AI sebagai Asisten Virtual Co-Founder. Berikut adalah 60 prompt terstruktur yang dirancang secara detail untuk menyusun konsep LearnIT Copilot:*
 
 ### A. Eksplorasi Masalah (20 Prompt)
-1. *"Sebagai co-founder virtual saya, berikan analisis mendalam mengenai 5 kesalahan paling umum dalam penulisan kode (code smells) yang sering dilakukan mahasiswa IT semester 5 saat membuat aplikasi web modern React/Next.js pertama mereka."*
+1. *"Sebagai co-founder virtual saya, berikan analisis mendalam mengenai 5 kesalahan paling umum dalam penulisan kode (code smells) yang sering dilakukan mahasiswa IT semester 6 saat membuat aplikasi web modern React/Next.js pertama mereka."*
 2. *"Uraikan kesenjangan terbesar antara materi kuliah struktur data di kampus dengan implementasi struktur data riil dalam proyek database berskala besar di industri saat ini."*
 3. *"Menurut perspektif rekruter teknologi senior, apa saja 3 parameter utama yang membuat portofolio GitHub seorang fresh graduate langsung ditolak pada penyaringan awal?"*
 4. *"Analisis mengapa metode pembelajaran berbasis video satu arah (seperti Udemy) sering kali gagal membantu mahasiswa IT keluar dari 'Tutorial Hell'. Apa komponen interaktif yang hilang?"*
 5. *"Bagaimana tren kebutuhan industri terhadap peran DevOps di tahun ini? Keterampilan dasar apa yang wajib dikuasai mahasiswa jika mereka ingin langsung menembus posisi Junior DevOps?"*
-6. *"Uraikan masalah psikologis seperti imposter syndrome yang dihadapi mahasiswa IT semester 5 ketika melihat lowongan kerja magang dengan persyaratan teknologi yang sangat banyak."*
+6. *"Uraikan masalah psikologis seperti imposter syndrome yang dihadapi mahasiswa IT semester 6 ketika melihat lowongan kerja magang dengan persyaratan teknologi yang sangat banyak."*
 7. *"Identifikasi kendala utama dosen di politeknik dalam memberikan umpan balik (feedback) coding yang mendalam bagi setiap mahasiswa di kelas berkapasitas 30 orang."*
 8. *"Bagaimana standar industri mendefinisikan 'Clean Code' pada proyek backend Node.js? Berikan 5 contoh konkret perbedaan kode mahasiswa vs kode profesional."*
 9. *"Analisis apa dampak dari keterlambatan pembaharuan kurikulum kampus IT terhadap daya saing lulusan vokasi di pasar kerja regional."*
@@ -121,7 +121,7 @@ Menggunakan metode **5 Whys** untuk menemukan akar masalah pengangguran/kesulita
 57. *"Rancang fitur simulasi rapat perencanaan proyek (Sprint Planning) di mana AI berperan sebagai Product Owner dan Scrum Master, berinteraksi dengan mahasiswa menggunakan input suara."*
 58. *"Bagaimana cara membangun fitur pelacakan kemajuan belajar psikometris yang mendeteksi tingkat frustrasi mahasiswa berdasarkan kecepatan mengetik dan pola error kode mereka?"*
 59. *"Rancang konsep sistem penghargaan (reward system) berbasis blockchain atau sertifikasi digital terverifikasi yang langsung terintegrasi dengan verifikasi portofolio otomatis AI."*
-60. *"Bagaimana inovasi fitur 'AI Code Historian' yang dapat menceritakan sejarah evolusi kode mahasiswa dari semester 1 hingga semester 5 untuk menunjukkan perkembangan pola pikir mereka kepada calon pemberi kerja?"*
+60. *"Bagaimana inovasi fitur 'AI Code Historian' yang dapat menceritakan sejarah evolusi kode mahasiswa dari semester 1 hingga semester 6 untuk menunjukkan perkembangan pola pikir mereka kepada calon pemberi kerja?"*
 
 ---
 
