@@ -4,45 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LearnIT Copilot - UTS Topik Khusus Hub</title>
+  <title>LearnIT Copilot - Presentasi UTS RPL Agentic AI</title>
 
   <!-- Premium Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Marked.js for Proposal Markdown Rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
     /* ----------------------------------------------------
        CORE DESIGN SYSTEM & VARIABLES
        ---------------------------------------------------- */
     :root {
-      --bg-dark: #070a13;
-      --bg-card: rgba(15, 23, 42, 0.65);
-      --border-color: rgba(51, 65, 85, 0.45);
-      --text-white: #f8fafc;
+      --bg-dark: #0f172a;
+      /* Sleek Slate 900 */
+      --bg-card: #1e293b;
+      /* Translucent Slate 800 */
+      --border-card: #334155;
+      /* Slate 700 */
+      --text-white: #ffffff;
       --text-muted: #94a3b8;
+      /* Gray 400 */
       --text-dim: #64748b;
-
+      /* Gray 500 */
       --cyan: #38bdf8;
+      /* Cyan Accent */
       --cyan-glow: rgba(56, 189, 248, 0.15);
-      --cyan-border: rgba(56, 189, 248, 0.4);
-
-      --green: #10b981;
-      --green-glow: rgba(16, 185, 129, 0.15);
-      --green-border: rgba(16, 185, 129, 0.4);
-
-      --purple: #a855f7;
-      --purple-glow: rgba(168, 85, 247, 0.15);
-      --purple-border: rgba(168, 85, 247, 0.4);
+      --green: #4ade80;
+      /* Emerald Positive */
+      --green-glow: rgba(74, 222, 128, 0.1);
+      --yellow: #fbbf24;
+      /* Amber Warning */
+      --yellow-glow: rgba(251, 191, 36, 0.1);
+      --purple: #c084fc;
+      /* Interactive Purple */
 
       --font-main: 'Plus Jakarta Sans', sans-serif;
-      --font-header: 'Outfit', sans-serif;
       --font-mono: 'Fira Code', monospace;
-
-      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -55,24 +56,26 @@
       background-color: var(--bg-dark);
       color: var(--text-white);
       font-family: var(--font-main);
-      min-height: 100vh;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       position: relative;
-      overflow-x: hidden;
     }
 
-    /* Decorative Ambient Glows */
+    /* Decorative Radial Gradients for Premium Glows */
     body::before {
       content: '';
       position: absolute;
       top: -10%;
-      left: -10%;
-      width: 60vw;
-      height: 60vw;
+      right: -10%;
+      width: 50vw;
+      height: 50vw;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(7, 10, 19, 0) 70%);
-      z-index: -1;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -80,12 +83,12 @@
       content: '';
       position: absolute;
       bottom: -10%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, rgba(7, 10, 19, 0) 70%);
-      z-index: -1;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.05) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -93,17 +96,14 @@
        LAYOUT: HEADER & FOOTER
        ---------------------------------------------------- */
     header {
-      background: rgba(7, 10, 19, 0.75);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1.25rem 3rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: var(--transition-smooth);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
     }
 
     .brand {
@@ -113,562 +113,2367 @@
     }
 
     .brand-logo {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       background: linear-gradient(135deg, var(--cyan), var(--green));
-      border-radius: 0.75rem;
+      border-radius: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.3rem;
-      color: #070a13;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
-      font-family: var(--font-header);
+      font-size: 1.1rem;
+      color: var(--bg-dark);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
     }
 
-    .brand-info h1 {
-      font-family: var(--font-header);
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
-    .brand-info h1 span {
+    .brand-title span {
       background: linear-gradient(to right, var(--cyan), var(--green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .brand-info p {
-      font-size: 0.75rem;
+    .nav-shortcuts {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .student-badge {
-      background: rgba(30, 41, 59, 0.45);
-      border: 1px solid var(--border-color);
-      padding: 0.5rem 1.25rem;
+      background: rgba(30, 41, 59, 0.6);
+      padding: 0.4rem 0.8rem;
       border-radius: 2rem;
-      text-align: right;
-      transition: var(--transition-smooth);
-      backdrop-filter: blur(5px);
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .student-badge:hover {
-      border-color: var(--cyan-border);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
-    }
-
-    .student-badge .name {
-      font-weight: 700;
-      color: var(--text-white);
-      font-size: 0.85rem;
-    }
-
-    .student-badge .nim-class {
+    .shortcut-key {
+      background: var(--border-card);
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.25rem;
       font-family: var(--font-mono);
-      color: var(--cyan);
-      font-size: 0.75rem;
-      margin-top: 0.1rem;
+      color: var(--text-white);
+      font-weight: bold;
     }
 
-    /* ----------------------------------------------------
-       HERO BANNER
-       ---------------------------------------------------- */
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem 3.5rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
+    footer {
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(51, 65, 85, 0.5);
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .slide-progress-container {
+      flex-grow: 1;
+      max-width: 50%;
+      margin: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .slide-progress-bar {
+      height: 4px;
+      background: rgba(51, 65, 85, 0.5);
+      border-radius: 2px;
+      overflow: hidden;
       position: relative;
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--cyan);
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.05);
+    .slide-progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 9.09%;
+      /* Dynamic calculated */
+      background: linear-gradient(to right, var(--cyan), var(--green));
+      transition: var(--transition-smooth);
     }
 
-    .hero-title {
-      font-family: var(--font-header);
-      font-size: 3.5rem;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: 1.25rem;
-      background: linear-gradient(135deg, var(--text-white) 60%, var(--text-muted));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.1));
-    }
-
-    .hero-desc {
-      font-size: 1.15rem;
+    .slide-counter {
+      font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto 2.5rem auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-btn:hover {
+      background: var(--border-card);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn:active {
+      transform: translateY(0);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
     }
 
     /* ----------------------------------------------------
-       CARDS GRID
+       SLIDES CONTAINER
        ---------------------------------------------------- */
     main {
       flex-grow: 1;
-      max-width: 1200px;
       width: 100%;
-      margin: 0 auto;
-      padding: 0 2rem 4rem 2rem;
+      position: relative;
+      z-index: 5;
     }
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 1.25rem;
-      padding: 2.25rem 2rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 3rem;
       display: flex;
       flex-direction: column;
+      opacity: 0;
+      transform: scale(0.97) translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE TYPOGRAPHY & HEADER
+       ---------------------------------------------------- */
+    .slide-category {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .slide-category::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    .slide-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--text-white) 70%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slide-title-number {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border-card);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.5rem;
+      background: rgba(30, 41, 59, 0.4);
+    }
+
+    .slide-content-grid {
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      min-height: 0;
+      /* Important for flex container scaling */
+    }
+
+    .two-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .three-cols {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* ----------------------------------------------------
+       COMPONENTS: CARDS, LISTS, CODE
+       ---------------------------------------------------- */
+    .premium-card {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
       position: relative;
       overflow: hidden;
       transition: var(--transition-smooth);
     }
 
-    .card::before {
+    .premium-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
-      transition: var(--transition-smooth);
+      height: 3px;
+      background: linear-gradient(to right, var(--cyan), transparent);
+      opacity: 0.7;
     }
 
-    .card.slide::before { background: linear-gradient(to right, var(--cyan), transparent); }
-    .card.mockup::before { background: linear-gradient(to right, var(--green), transparent); }
-    .card.proposal::before { background: linear-gradient(to right, var(--purple), transparent); }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    .premium-card.positive::before {
+      background: linear-gradient(to right, var(--green), transparent);
     }
 
-    .card.slide:hover {
-      border-color: var(--cyan-border);
-      box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.15);
+    .premium-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(30, 41, 59, 0.6);
+      box-shadow: 0 12px 35px -12px rgba(56, 189, 248, 0.1);
+      transform: translateY(-4px);
     }
 
-    .card.mockup:hover {
-      border-color: var(--green-border);
-      box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
-    }
-
-    .card.proposal:hover {
-      border-color: var(--purple-border);
-      box-shadow: 0 15px 35px -10px rgba(168, 85, 247, 0.15);
-    }
-
-    .card-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.75rem;
-      transition: var(--transition-smooth);
-    }
-
-    .card.slide .card-icon {
-      background: var(--cyan-glow);
-      color: var(--cyan);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .card.mockup .card-icon {
-      background: var(--green-glow);
-      color: var(--green);
-      border: 1px solid rgba(16, 185, 129, 0.2);
-    }
-
-    .card.proposal .card-icon {
-      background: var(--purple-glow);
-      color: var(--purple);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-    }
-
-    .card-icon svg {
-      width: 1.75rem;
-      height: 1.75rem;
+    .premium-card.positive:hover {
+      border-color: rgba(74, 222, 128, 0.4);
+      box-shadow: 0 12px 35px -12px rgba(74, 222, 128, 0.08);
     }
 
     .card-title {
-      font-family: var(--font-header);
-      font-size: 1.4rem;
+      font-size: 1.15rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.2px;
+    }
+
+    .card-title svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .card-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      overflow-y: auto;
+    }
+
+    .card-body p strong {
       color: var(--text-white);
+    }
+
+    /* Structured list item with icon */
+    .icon-list-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
       margin-bottom: 0.75rem;
     }
 
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 2rem;
+    .icon-list-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .icon-wrapper {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cyan-glow);
+      color: var(--cyan);
+      margin-top: 0.1rem;
+    }
+
+    .icon-wrapper.positive {
+      background: var(--green-glow);
+      color: var(--green);
+    }
+
+    .icon-wrapper.warning {
+      background: var(--yellow-glow);
+      color: var(--yellow);
+    }
+
+    .icon-list-text {
       flex-grow: 1;
     }
 
-    .card-btn {
-      width: 100%;
-      padding: 0.85rem 1.5rem;
-      border-radius: 0.75rem;
-      font-family: var(--font-main);
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      transition: var(--transition-smooth);
-    }
-
-    .card.slide .card-btn {
-      background: var(--cyan);
-      color: #070a13;
-      border: none;
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
-    }
-
-    .card.slide .card-btn:hover {
-      background: #7dd3fc;
-      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-    }
-
-    .card.mockup .card-btn {
-      background: var(--green);
-      color: #070a13;
-      border: none;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
-    }
-
-    .card.mockup .card-btn:hover {
-      background: #34d399;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-    }
-
-    .card.proposal .card-btn {
-      background: transparent;
-      color: var(--purple);
-      border: 1px solid var(--purple-border);
-    }
-
-    .card.proposal .card-btn:hover {
-      background: var(--purple-glow);
-      border-color: var(--purple);
+    .icon-list-text strong {
       color: var(--text-white);
-    }
-
-    .card-btn svg {
-      width: 1.1rem;
-      height: 1.1rem;
-      transition: var(--transition-smooth);
-    }
-
-    .card-btn:hover svg {
-      transform: translateX(4px);
+      display: block;
+      margin-bottom: 0.15rem;
     }
 
     /* ----------------------------------------------------
-       PROPOSAL MODAL & MARKDOWN VIEWER
+       SLIDE 1: COVER SPECIFICS
        ---------------------------------------------------- */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(16px);
-      z-index: 1000;
-      opacity: 0;
+    .cover-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem;
+      position: relative;
+    }
+
+    .cover-frame {
+      position: absolute;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      border: 1px solid rgba(51, 65, 85, 0.4);
+      border-radius: 1.5rem;
       pointer-events: none;
+    }
+
+    .cover-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .cover-main-title {
+      font-size: 4.8rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-white) 60%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.15));
+    }
+
+    .cover-subtitle {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.5;
+    }
+
+    .cover-persona-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green-glow);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      color: var(--green);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.1);
+    }
+
+    .cover-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cover-meta-item {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .cover-meta-sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.8;
+      }
+
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 5px var(--cyan));
+      }
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 2: USER PERSONA EXPANDABLE CARD
+       ---------------------------------------------------- */
+    .persona-profile {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      border-bottom: 1px solid var(--border-card);
+      padding-bottom: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .persona-avatar {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: var(--transition-smooth);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
     }
 
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-container {
-      width: 90%;
-      max-width: 900px;
-      height: 85vh;
-      background: #0d1324;
-      border: 1px solid var(--border-color);
-      border-radius: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
-      transform: scale(0.95) translateY(20px);
-      transition: var(--transition-smooth);
-    }
-
-    .modal-overlay.active .modal-container {
-      transform: scale(1) translateY(0);
-    }
-
-    .modal-header {
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(13, 19, 36, 0.6);
-    }
-
-    .modal-title {
-      font-family: var(--font-header);
+    .persona-identity h3 {
       font-size: 1.25rem;
       font-weight: 800;
       color: var(--text-white);
     }
 
-    .modal-close-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
+    .persona-identity p {
+      font-size: 0.85rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 3: INTERACTIVE 5 WHYS ACCORDION
+       ---------------------------------------------------- */
+    .accordion-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      background: rgba(30, 41, 59, 0.3);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .accordion-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      background: rgba(30, 41, 59, 0.5);
+    }
+
+    .accordion-header:hover {
+      background: rgba(51, 65, 85, 0.4);
+      color: var(--cyan);
+    }
+
+    .accordion-label {
+      color: var(--cyan);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin-right: 1rem;
+      background: var(--cyan-glow);
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .accordion-title {
+      flex-grow: 1;
+    }
+
+    .accordion-icon {
+      font-size: 0.8rem;
+      transition: var(--transition-smooth);
       color: var(--text-muted);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(15, 23, 42, 0.4);
+      border-top: 0px solid transparent;
+      padding: 0 1.5rem;
+    }
+
+    .accordion-item.active {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 4px 15px -5px rgba(56, 189, 248, 0.1);
+    }
+
+    .accordion-item.active .accordion-header {
+      background: rgba(30, 41, 59, 0.7);
+      color: var(--text-white);
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+      color: var(--cyan);
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 200px;
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    .accordion-answer {
+      color: var(--text-white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .accordion-answer::before {
+      content: 'A: ';
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .root-cause-alert {
+      border: 2px solid var(--green);
+      border-radius: 0.75rem;
+      background: rgba(74, 222, 128, 0.05);
+      padding: 1.25rem;
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.05);
+    }
+
+    .root-cause-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.35rem;
+    }
+
+    .root-cause-desc {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-white);
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 4: AI QUESTION ENGINEERING TAB INTERFACE
+       ---------------------------------------------------- */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-card);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: var(--transition-smooth);
+    }
+
+    .tab-btn:hover {
+      color: var(--cyan);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    .tab-btn.active {
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .tab-content-pane {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeIn 0.35s ease;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .tab-content-pane.active {
+      display: flex;
+    }
+
+    .prompt-box {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(51, 65, 85, 0.4);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+
+    .prompt-box-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .prompt-box-title.bad {
+      color: var(--yellow);
+    }
+
+    .prompt-box-title.good {
+      color: var(--green);
+    }
+
+    .prompt-box-text {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-white);
+    }
+
+    .prompt-bullets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .prompt-bullet-item {
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid var(--border-card);
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .prompt-bullet-item strong {
+      color: var(--cyan);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 6: INTERACTIVE MCP FLOWCHART
+       ---------------------------------------------------- */
+    .mcp-layout {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 2rem;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .mcp-interactive-diagram {
+      border: 1px solid var(--border-card);
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .diagram-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 2;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .diagram-node:hover,
+    .diagram-node.active {
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+      background: rgba(30, 41, 59, 0.8);
+      transform: scale(1.02);
+    }
+
+    .diagram-node.center {
+      background: linear-gradient(135deg, var(--cyan-glow), rgba(192, 132, 252, 0.15));
+      border-color: rgba(56, 189, 248, 0.4);
+      font-size: 0.95rem;
+      padding: 1rem;
+    }
+
+    .diagram-node.center:hover,
+    .diagram-node.center.active {
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    }
+
+    .diagram-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .diagram-row.ends {
+      justify-content: space-between;
+      padding: 0 1rem;
+    }
+
+    /* Diagram Connections using simple styled indicator lines */
+    .diagram-connection {
+      height: 2rem;
+      width: 2px;
+      background: var(--border-card);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      transition: var(--transition-smooth);
+    }
+
+    .diagram-connection.active {
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    .mcp-details-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mcp-server-detail-box {
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      background: rgba(30, 41, 59, 0.3);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .mcp-server-detail-box:hover,
+    .mcp-server-detail-box.active {
+      border-color: var(--cyan);
+      background: rgba(30, 41, 59, 0.6);
+      transform: translateX(4px);
+    }
+
+    .mcp-server-detail-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mcp-server-detail-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .mcp-badge {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      background: var(--cyan-glow);
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 8-9: TERMINAL & DIFF INTERACTIVE MOCKUPS
+       ---------------------------------------------------- */
+    .terminal-container {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 0.75rem;
+      font-family: var(--font-mono);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .terminal-buttons {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .terminal-dot {
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+    }
+
+    .dot-red {
+      background: #ef4444;
+    }
+
+    .dot-yellow {
+      background: #f59e0b;
+    }
+
+    .dot-green {
+      background: #10b981;
+    }
+
+    .terminal-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .terminal-content {
+      padding: 1.25rem;
+      flex-grow: 1;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+    }
+
+    /* Code Diff line coloring */
+    .diff-line {
+      display: block;
+      padding: 0.1rem 0.5rem;
+      border-radius: 0.25rem;
+      margin: 0.05rem 0;
+      position: relative;
+    }
+
+    .diff-line.deletion {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    .diff-line.addition {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border-left: 2px solid #10b981;
+    }
+
+    .diff-line.explanation {
+      background-color: rgba(56, 189, 248, 0.05);
+      color: var(--cyan);
+      font-style: italic;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .diff-line-tooltip {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      padding: 0.2rem 0.5rem;
+      font-family: var(--font-main);
+      font-size: 0.7rem;
+      border-radius: 0.25rem;
+      color: var(--cyan);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+
+    .diff-line:hover .diff-line-tooltip {
+      opacity: 1;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 9: INTERACTIVE INTERVIEW SIMULATOR
+       ---------------------------------------------------- */
+    .interview-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 1rem;
+    }
+
+    .interview-chat-area {
+      flex-grow: 1;
+      border: 1px solid #1e293b;
+      background: #020617;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .chat-bubble {
+      max-width: 85%;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .chat-bubble.ai {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-card);
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    .chat-bubble.user {
+      background: var(--cyan-glow);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      align-self: flex-end;
+      border-top-right-radius: 0;
+      color: var(--text-white);
+    }
+
+    .chat-bubble.eval {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      align-self: center;
+      max-width: 95%;
+      width: 100%;
+      border-left: 4px solid var(--green);
+    }
+
+    .chat-sender {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.35rem;
+    }
+
+    .chat-sender.ai {
+      color: var(--cyan);
+    }
+
+    .chat-sender.user {
+      color: var(--purple);
+    }
+
+    .chat-sender.eval {
+      color: var(--green);
+    }
+
+    .interview-options-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .interview-options-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+    }
+
+    .option-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      flex-grow: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-white);
+      padding: 0.85rem 1.25rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: left;
+      transition: var(--transition-smooth);
+    }
+
+    .option-btn:hover {
+      border-color: var(--cyan);
+      background: var(--cyan-glow);
+      transform: translateY(-2px);
+    }
+
+    .option-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 11: CLOSING SPECIFICS
+       ---------------------------------------------------- */
+    .closing-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem;
+      position: relative;
+    }
+
+    .closing-frame {
+      position: absolute;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      border: 1px solid rgba(51, 65, 85, 0.4);
+      border-radius: 1.5rem;
+      pointer-events: none;
+    }
+
+    .closing-eyebrow {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .closing-main-title {
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--cyan) 30%, var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.2));
+    }
+
+    .closing-subtitle {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-white);
+      max-width: 800px;
+      margin: 0 auto 1rem auto;
+      line-height: 1.4;
+    }
+
+    .closing-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+    }
+
+    .closing-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* ----------------------------------------------------
+       SCROLLBAR STYLING
+       ---------------------------------------------------- */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-card);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-dim);
+    }
+
+    /* ----------------------------------------------------
+       MOCKUP HUBS NEW STYLES (SLIDES 8, 9, 10)
+       ---------------------------------------------------- */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+      min-height: 0;
+      flex-grow: 1;
+    }
+
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .panel-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--cyan), transparent);
+    }
+
+    .panel-card.success::before {
+      background: linear-gradient(to right, var(--green), transparent);
+    }
+
+    .panel-card.warning::before {
+      background: linear-gradient(to right, var(--yellow), transparent);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-white);
+    }
+
+    .panel-title svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      color: var(--cyan);
+    }
+
+    .panel-card.success .panel-title svg {
+      color: var(--green);
+    }
+
+    .panel-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .skill-tree-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .skill-node {
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(30, 41, 59, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .skill-node:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.5);
+      transform: translateX(4px);
+    }
+
+    .skill-node.completed {
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .skill-node.active-focus {
+      border-color: var(--yellow);
+      background: rgba(251, 191, 36, 0.03);
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.05);
+      position: relative;
+    }
+
+    .skill-node.active-focus::after {
+      content: 'FOKUS AKTIF';
+      position: absolute;
+      right: 0.75rem;
+      top: -9px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      background: var(--yellow);
+      color: #000;
+      padding: 0.05rem 0.4rem;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-node.locked {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-icon-status {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .completed .skill-icon-status {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .active-focus .skill-icon-status {
+      background: var(--yellow-glow);
+      color: var(--yellow);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      animation: pulse-glow-presentation 2s infinite;
+    }
+
+    @keyframes pulse-glow-presentation {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(251, 191, 36, 0);
+      }
+    }
+
+    .locked .skill-icon-status {
+      background: rgba(100, 116, 139, 0.1);
+      color: var(--text-dim);
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+
+    .skill-details h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .skill-details p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .completed .skill-details h4 {
+      text-decoration: line-through;
+      color: var(--text-dim);
+    }
+
+    .arrow-right-icon {
+      color: var(--text-dim);
+      transition: var(--transition-smooth);
+    }
+
+    .skill-node:hover .arrow-right-icon {
+      color: var(--cyan);
+      transform: translateX(2px);
+    }
+
+    .mcp-query-box {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .mcp-query-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+    }
+
+    .mcp-status-tag {
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.22rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .mcp-query-text {
+      font-size: 0.78rem;
+      color: var(--text-white);
+      font-family: var(--font-mono);
+      background: #020617;
+      padding: 0.5rem;
+      border-radius: 0.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .content-card-video {
+      background: #020617;
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transition: var(--transition-smooth);
+    }
+
+    .content-card-video:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+    }
+
+    .video-thumbnail-mock {
+      height: 140px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .video-thumbnail-mock::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 80%);
+    }
+
+    .play-btn-mock {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition-smooth);
+    }
+
+    .play-btn-mock:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    }
+
+    .play-btn-mock svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      fill: currentColor;
+      margin-left: 2px;
+    }
+
+    .video-badge-duration {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.2rem;
+      z-index: 2;
+    }
+
+    .video-info-box {
+      padding: 0.75rem;
+    }
+
+    .video-channel {
+      font-size: 0.7rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .video-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.3;
+    }
+
+    .video-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .task-box {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .task-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--yellow);
+      margin-bottom: 0.35rem;
+    }
+
+    .task-header svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .task-desc {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: var(--transition-smooth);
+    }
+
+    .action-btn.primary {
+      background: var(--cyan);
+      color: var(--bg-dark);
+      border: none;
+      box-shadow: 0 4px 8px rgba(56, 189, 248, 0.2);
+    }
+
+    .action-btn.primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-1px);
+    }
+
+    .action-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border-card);
+      color: var(--text-white);
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-muted);
+      transform: translateY(-1px);
+    }
+
+    .git-header-bar {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .repo-info {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .repo-name {
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .repo-branch {
+      background: rgba(100, 116, 139, 0.2);
+      color: var(--text-muted);
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+    }
+
+    .commit-score-badge {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.4rem;
+      font-weight: 800;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .terminal-window {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-height: 0;
+    }
+
+    .terminal-header {
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-card);
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .term-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .term-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+    }
+
+    .term-dot.red {
+      background: var(--red);
+    }
+
+    .term-dot.yellow {
+      background: var(--yellow);
+    }
+
+    .term-dot.green {
+      background: var(--green);
+    }
+
+    .term-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: #e2e8f0;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .code-diff-container {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .diff-line {
+      display: flex;
+      width: 100%;
+      padding: 0.1rem 0.4rem;
+      position: relative;
+      transition: background 0.15s ease;
+    }
+
+    .diff-num {
+      width: 1.5rem;
+      color: var(--text-dim);
+      user-select: none;
+      text-align: right;
+      padding-right: 0.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      margin-right: 0.5rem;
+    }
+
+    .diff-content {
+      flex-grow: 1;
+      white-space: pre;
+    }
+
+    .diff-line.deletion {
+      background: rgba(239, 68, 68, 0.12);
+      color: #f87171;
+    }
+
+    .diff-line.addition {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+    }
+
+    .diff-line.addition.highlight-applied {
+      animation: flash-green-pres 1.5s ease-out;
+    }
+
+    @keyframes flash-green-pres {
+      0% {
+        background: rgba(16, 185, 129, 0.5);
+      }
+
+      100% {
+        background: rgba(16, 185, 129, 0.12);
+      }
+    }
+
+    .diff-tooltip {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.2rem;
+      font-family: var(--font-main);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+      z-index: 10;
+    }
+
+    .diff-line:hover .diff-tooltip {
+      opacity: 1;
+    }
+
+    .auditor-avatar-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(56, 189, 248, 0.03);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .auditor-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bg-dark);
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      position: relative;
+    }
+
+    .auditor-avatar::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border: 1.5px solid var(--bg-card);
+      border-radius: 50%;
+      bottom: 0;
+      right: 0;
+    }
+
+    .auditor-meta h4 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .auditor-meta p {
+      font-size: 0.7rem;
+      color: var(--cyan);
+    }
+
+    .suggestion-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-card);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-height: 0;
+    }
+
+    .suggestion-header {
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--cyan);
+      letter-spacing: 0.5px;
+    }
+
+    .suggestion-text {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-white);
+    }
+
+    .suggestion-rationale {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--cyan);
+      padding-left: 0.6rem;
+      font-style: italic;
+    }
+
+    .suggestion-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .suggestion-btn {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0.4rem;
+      font-family: var(--font-main);
       transition: var(--transition-smooth);
     }
 
-    .modal-close-btn:hover {
-      background: rgba(239, 68, 68, 0.15);
-      border-color: rgba(239, 68, 68, 0.4);
-      color: #ef4444;
-    }
-
-    .modal-close-btn svg {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-
-    .modal-body {
-      flex-grow: 1;
-      padding: 2.5rem 3rem;
-      overflow-y: auto;
-      line-height: 1.8;
-      color: #e2e8f0;
-      font-size: 1rem;
-    }
-
-    /* Markdown styling inside modal */
-    .proposal-content h1, .proposal-content h2, .proposal-content h3 {
-      font-family: var(--font-header);
-      color: var(--text-white);
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-weight: 800;
-    }
-
-    .proposal-content h1 {
-      font-size: 2rem;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 0.5rem;
-      background: linear-gradient(to right, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .proposal-content h2 {
-      font-size: 1.5rem;
-      color: var(--cyan);
-      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
-      padding-bottom: 0.25rem;
-    }
-
-    .proposal-content h3 {
-      font-size: 1.2rem;
-      color: var(--green);
-    }
-
-    .proposal-content p {
-      margin-bottom: 1.25rem;
-      color: #cbd5e1;
-    }
-
-    .proposal-content ul, .proposal-content ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      color: #cbd5e1;
-    }
-
-    .proposal-content li {
-      margin-bottom: 0.5rem;
-    }
-
-    .proposal-content strong {
-      color: var(--text-white);
-    }
-
-    .proposal-content code {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      background: rgba(15, 23, 42, 0.6);
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      color: #f472b6;
-    }
-
-    .proposal-content pre {
-      background: #020617;
-      border: 1px solid var(--border-color);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
-    }
-
-    .proposal-content pre code {
-      background: transparent;
+    .suggestion-btn.accept {
+      background: var(--green);
+      color: var(--bg-dark);
       border: none;
-      padding: 0;
-      color: #e2e8f0;
-      font-size: 0.85rem;
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
     }
 
-    .proposal-content blockquote {
-      border-left: 4px solid var(--green);
-      background: var(--green-glow);
-      padding: 1rem 1.5rem;
-      border-radius: 0 0.5rem 0.5rem 0;
-      margin-bottom: 1.5rem;
-      font-style: italic;
+    .suggestion-btn.accept:hover {
+      background: #34d399;
+      transform: translateY(-1px);
     }
 
-    .proposal-content blockquote p {
-      margin-bottom: 0;
-      color: #a7f3d0;
+    .suggestion-btn.query {
+      background: transparent;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--cyan);
     }
 
-    .proposal-content hr {
-      border: 0;
-      border-top: 1px solid var(--border-color);
-      margin: 2rem 0;
+    .suggestion-btn.query:hover {
+      background: var(--cyan-glow);
+      transform: translateY(-1px);
     }
 
-    /* Table styles */
-    .proposal-content table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+    .suggestion-btn.ignore {
+      background: transparent;
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
     }
 
-    .proposal-content th, .proposal-content td {
-      border: 1px solid var(--border-color);
-      padding: 0.75rem 1rem;
-      text-align: left;
+    .suggestion-btn.ignore:hover {
+      background: rgba(255, 255, 255, 0.02);
+      transform: translateY(-1px);
     }
 
-    .proposal-content th {
-      background: rgba(15, 23, 42, 0.7);
-      color: var(--text-white);
-      font-weight: 700;
+    .interview-container {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 1.5rem;
+      min-height: 0;
+      flex-grow: 1;
     }
 
-    .proposal-content tr:nth-child(even) td {
-      background: rgba(15, 23, 42, 0.2);
+    .chat-panel {
+      border: 1px solid var(--border-card);
+      background: var(--bg-terminal);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      min-height: 0;
     }
 
-    /* ----------------------------------------------------
-       FOOTER
-       ---------------------------------------------------- */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 2rem 3rem;
-      background: rgba(7, 10, 19, 0.85);
-      backdrop-filter: blur(10px);
+    .chat-header {
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-card);
+      padding: 0.6rem 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: auto;
     }
 
-    .footer-text {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: var(--transition-smooth);
+    .chat-title-info {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.4rem;
     }
 
-    .footer-link:hover {
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse-dot-anim-pres 1.5s infinite;
+    }
+
+    @keyframes pulse-dot-anim-pres {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.3);
+        opacity: 1;
+      }
+    }
+
+    .chat-title-info span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 0.5px;
+    }
+
+    .interview-role-tag {
+      background: var(--purple-glow);
+      color: var(--purple);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.2rem;
+      font-weight: 700;
+    }
+
+    .chat-body-pres {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      scroll-behavior: smooth;
+      min-height: 0;
+    }
+
+    .message-bubble-pres {
+      max-width: 80%;
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      line-height: 1.4;
+      font-size: 0.8rem;
+      animation: popInPres 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
+    @keyframes popInPres {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .message-bubble-pres.ai {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-card);
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    .message-bubble-pres.user {
+      background: var(--cyan-glow);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      align-self: flex-end;
+      border-top-right-radius: 0;
+      color: var(--text-white);
+    }
+
+    .message-bubble-pres.evaluation {
+      background: rgba(16, 185, 129, 0.04);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-left: 4px solid var(--green);
+      align-self: center;
+      max-width: 95%;
+      width: 100%;
+    }
+
+    .message-bubble-pres.evaluation.warning {
+      background: rgba(245, 158, 11, 0.04);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-left: 4px solid var(--yellow);
+    }
+
+    .bubble-meta-pres {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+    }
+
+    .ai .bubble-meta-pres {
       color: var(--cyan);
     }
 
-    .footer-link svg {
-      width: 1.1rem;
-      height: 1.1rem;
+    .user .bubble-meta-pres {
+      color: var(--purple);
     }
 
-    /* Responsive Design */
-    @media (max-width: 968px) {
-      .grid-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .evaluation .bubble-meta-pres {
+      color: var(--green);
+    }
+
+    .evaluation.warning .bubble-meta-pres {
+      color: var(--yellow);
+    }
+
+    .evaluation-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .eval-score-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.2rem;
+    }
+
+    .evaluation .eval-score-pill {
+      background: var(--green-glow);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .evaluation.warning .eval-score-pill {
+      background: var(--yellow-glow);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .typing-loader {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.4rem 0.2rem;
+    }
+
+    .typing-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: wave-pres 1.2s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes wave-pres {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
       }
 
-      .hero-title {
-        font-size: 2.75rem;
+      30% {
+        transform: translateY(-3px);
+      }
+    }
+
+    .chat-input-panel {
+      padding: 1rem;
+      border-top: 1px solid var(--border-card);
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .input-instruction {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .option-card-btn {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-card);
+      border-radius: 0.6rem;
+      padding: 0.6rem 1rem;
+      color: var(--text-white);
+      text-align: left;
+      font-family: var(--font-main);
+      font-size: 0.78rem;
+      cursor: pointer;
+      line-height: 1.4;
+      display: flex;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .option-card-btn:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      background: var(--cyan-glow);
+      transform: translateY(-1px);
+    }
+
+    .option-card-btn strong {
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .option-card-btn.correct:hover strong {
+      color: var(--green);
+    }
+
+    .option-card-btn.wrong:hover strong {
+      color: var(--yellow);
+    }
+
+    .custom-input-row {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .chat-text-input {
+      flex-grow: 1;
+      background: #020617;
+      border: 1px solid var(--border-card);
+      border-radius: 0.4rem;
+      padding: 0.5rem 0.8rem;
+      color: var(--text-white);
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .chat-text-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+    }
+
+    .send-msg-btn {
+      background: var(--cyan);
+      color: var(--bg-dark);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-family: var(--font-main);
+      transition: var(--transition-smooth);
+    }
+
+    .send-msg-btn:hover {
+      background: #7dd3fc;
+      transform: translateY(-1px);
+    }
+
+    .perf-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .circular-progress-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+
+    .circular-svg {
+      width: 100px;
+      height: 100px;
+      transform: rotate(-90deg);
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 8;
+    }
+
+    .circle-fill {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 263.89;
+      stroke-dashoffset: 263.89;
+      transition: stroke-dashoffset 1.5s ease-in-out, stroke 1s ease;
+      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+    }
+
+    .circle-text {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .perf-metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .perf-metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding-bottom: 0.3rem;
+    }
+
+    .perf-metric-name {
+      color: var(--text-muted);
+    }
+
+    .perf-metric-val {
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .perf-tips {
+      background: rgba(168, 85, 247, 0.03);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .perf-tips strong {
+      color: var(--purple);
+      display: block;
+      margin-bottom: 0.2px;
+    }
+
+    /* ----------------------------------------------------
+       PRINT STYLING (PDF EXPORT)
+       ---------------------------------------------------- */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
       }
 
-      header, footer {
-        padding: 1.25rem 2rem;
+      html,
+      body {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        overflow: visible !important;
+        height: auto !important;
+        width: auto !important;
+      }
+
+      header,
+      footer,
+      .nav-shortcuts,
+      .nav-controls,
+      .slide-progress-container {
+        display: none !important;
+      }
+
+      main {
+        display: block !important;
+        height: auto !important;
+        width: 100% !important;
+      }
+
+      .slide {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        height: 100vh !important;
+        width: 100vw !important;
+        padding: 3rem !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        background-color: #0f172a !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
     }
   </style>
@@ -676,181 +2481,1673 @@
 
 <body>
 
-  <!-- Header -->
+  <!-- ====================================================
+       HEADER SECTION
+       ==================================================== -->
   <header>
     <div class="brand">
-      <div class="brand-logo">LC</div>
-      <div class="brand-info">
-        <h1>LearnIT <span>Copilot</span></h1>
-        <p>UTS RPL Agentic AI</p>
-      </div>
+      <div class="brand-logo">L</div>
+      <div class="brand-title">LearnIT <span>Copilot</span></div>
     </div>
 
-    <div class="student-badge">
-      <div class="name">Rivanzi Hidayatullah</div>
-      <div class="nim-class">NIM: 2311081034 &bull; Kelas: D4 RPL 3A</div>
+    <div class="nav-shortcuts">
+      <span>Navigasi:</span>
+      <span class="shortcut-key">←</span> / <span class="shortcut-key">→</span> atau <span
+        class="shortcut-key">Space</span>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-tag">UTS TOPIK KHUSUS</div>
-    <h2 class="hero-title">LearnIT Copilot Hub</h2>
-    <p class="hero-desc">
-      Platform pendamping pembelajaran IT adaptif dan persiapan karir vokasi bertenaga Agentic AI. Hub ini berisi seluruh berkas ujian tengah semester berupa presentasi interaktif, mockup antarmuka sistem, dan dokumen proposal teknis.
-    </p>
-  </section>
-
-  <!-- Main Grid -->
+  <!-- ====================================================
+       MAIN SLIDES CONTAINER
+       ==================================================== -->
   <main>
-    <div class="grid-container">
 
-      <!-- Card 1: Slide Presentasi -->
-      <div class="card slide">
-        <div class="card-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+    <!-- --------------------------------------------------
+         SLIDE 1: COVER
+         -------------------------------------------------- -->
+    <section class="slide active" id="slide-1">
+      <div class="cover-slide">
+        <div class="cover-frame"></div>
+        <div class="cover-eyebrow">TUGAS UTS SEMESTER 5</div>
+        <h1 class="cover-main-title">LearnIT Copilot</h1>
+        <p class="cover-subtitle">Asisten Pembelajaran IT Adaptif & Pendampingan Karir Mahasiswa Vokasi Berbasis Agentic
+          AI</p>
+
+        <div class="cover-persona-badge">
+          <svg style="width:1rem;height:1rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
           </svg>
+          Fokus Persona: Junior Full-Stack Web Developer
         </div>
-        <h3 class="card-title">Slide Presentasi</h3>
-        <p class="card-desc">Slide presentasi berbasis HTML interaktif yang merinci konsep LearnIT Copilot, problem discovery (5 Whys), prompt engineering, pembagian kerja manusia-AI, dan implementasi Model Context Protocol (MCP).</p>
-        <a href="UTS_Agentic_AI_Presentation.html" class="card-btn">
-          Buka Slide Presentasi
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
-      </div>
 
-      <!-- Card 2: Mockup Interaktif -->
-      <div class="card mockup">
-        <div class="card-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
+        <div class="cover-meta">
+          <div class="cover-meta-item">Membangun Solusi Digital Berbasis Agentic AI Untuk Menyelesaikan Masalah Nyata
+          </div>
+          <div class="cover-meta-sub">Teknologi Rekayasa Perangkat Lunak | Politeknik Negeri Padang</div>
         </div>
-        <h3 class="card-title">Mockup Hub</h3>
-        <p class="card-desc">Simulasi mockup antarmuka fungsional dari LearnIT Copilot. Jelajahi visualisasi fitur Adaptive Pathfinder, ulasan kode otomatis dari Autonomous Git Auditor (AGA), dan Interview Simulator.</p>
-        <a href="LearnIT_Copilot_Mockup.html" class="card-btn">
-          Jelajahi Mockup Hub
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
       </div>
+    </section>
 
-      <!-- Card 3: Proposal Solusi Digital -->
-      <div class="card proposal">
-        <div class="card-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>
+    <!-- --------------------------------------------------
+         SLIDE 2: PROBLEM DISCOVERY & USER PERSONA
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-2">
+      <div class="slide-category">01. Problem Discovery</div>
+      <h2 class="slide-title">
+        Problem Discovery & User Persona
+        <span class="slide-title-number">Slide 2 / 11</span>
+      </h2>
+
+      <div class="slide-content-grid two-cols">
+        <!-- Problem Statement Card -->
+        <div class="premium-card">
+          <h3 class="card-title">
+            <svg fill="none" stroke="var(--cyan)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+              </path>
+            </svg>
+            PROBLEM STATEMENT
+          </h3>
+          <div class="card-body">
+            <div class="icon-list-item">
+              <div class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Skill Gap Industri</strong>
+                Kesenjangan keterampilan yang besar antara materi kuliah IT konvensional dengan standar teknologi web
+                modern di industri.
+              </div>
+            </div>
+
+            <div class="icon-list-item">
+              <div class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Terjebak Tutorial Hell</strong>
+                Mahasiswa belajar secara pasif tanpa arah belajar terstruktur, mengakibatkan kebingungan saat membangun
+                proyek mandiri.
+              </div>
+            </div>
+
+            <div class="icon-list-item">
+              <div class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Keterbatasan Code Review</strong>
+                Dosen tidak memiliki waktu yang cukup untuk memberikan umpan balik (feedback) coding secara mendalam
+                baris-per-baris personal.
+              </div>
+            </div>
+
+            <div class="icon-list-item">
+              <div class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Kurikulum Lambat Update</strong>
+                Kurikulum akademik lambat diperbarui dibandingkan dengan perkembangan pesat ekosistem web modern (React,
+                Next.js, Node.js).
+              </div>
+            </div>
+          </div>
         </div>
-        <h3 class="card-title">Proposal Teknis</h3>
-        <p class="card-desc">Dokumen proposal lengkap yang memuat detail Problem Discovery, rubrik validasi solusi, analisis kompetitor terperinci (SWOT), pembagian kerja Agen-Siswa, dan visualisasi diagram alur arsitektur MCP.</p>
-        <button onclick="openProposalModal()" class="card-btn">
-          Baca Proposal Lengkap
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </button>
-      </div>
 
-    </div>
-  </main>
+        <!-- User Persona Card -->
+        <div class="premium-card positive">
+          <h3 class="card-title" style="color:var(--green)">
+            <svg fill="none" stroke="var(--green)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            USER PERSONA (WEB DEVELOPER FOCUS)
+          </h3>
+          <div class="card-body">
+            <div class="persona-profile">
+              <div class="persona-avatar">RW</div>
+              <div class="persona-identity">
+                <h3>Rian Wibowo (21 Tahun)</h3>
+                <p>Mahasiswa D4 TRPL - Semester 6 Politeknik</p>
+              </div>
+            </div>
 
-  <!-- Proposal Modal -->
-  <div class="modal-overlay" id="proposalModal">
-    <div class="modal-container">
-      <div class="modal-header">
-        <h3 class="modal-title">Proposal Solusi Digital - LearnIT Copilot</h3>
-        <button class="modal-close-btn" onclick="closeProposalModal()">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="proposalMarkdownContent" class="proposal-content">
-          <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
-            Memuat dokumen proposal...
+            <div class="icon-list-item">
+              <div class="icon-wrapper positive"><svg style="width:0.85rem;height:0.85rem" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Tujuan Utama (Goals)</strong>
+                Menguasai spesialisasi <strong>Full-Stack Web Developer</strong> siap kerja dalam waktu 6 bulan &
+                membangun portofolio riil berkualitas tinggi di GitHub.
+              </div>
+            </div>
+
+            <div class="icon-list-item">
+              <div class="icon-wrapper positive"><svg style="width:0.85rem;height:0.85rem" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Kebutuhan Utama (Needs)</strong>
+                Peta jalan belajar dinamis yang disesuaikan standar industri & asisten otomatis yang memberikan code
+                review instan.
+              </div>
+            </div>
+
+            <div class="icon-list-item">
+              <div class="icon-wrapper positive" style="background:var(--yellow-glow);color:var(--yellow)"><svg
+                  style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01"></path>
+                </svg></div>
+              <div class="icon-list-text">
+                <strong>Rasa Frustrasi (Pain Points)</strong>
+                Bingung memilah materi dari ribuan video tutorial, cemas tidak tahu apakah kode React/Node.js miliknya
+                sudah aman (secure) & clean code.
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Footer -->
+    <!-- --------------------------------------------------
+         SLIDE 3: ROOT CAUSE ANALYSIS (5 WHYS)
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-3">
+      <div class="slide-category">01. Problem Discovery</div>
+      <h2 class="slide-title">
+        Root Cause Analysis (5 Whys Method)
+        <span class="slide-title-number">Slide 3 / 11</span>
+      </h2>
+
+      <div class="slide-content-grid" style="display:flex; flex-direction:column; gap:1.25rem;">
+        <!-- Interactive 5 Whys Accordion -->
+        <div class="accordion-container" id="accordion-whys">
+          <div class="accordion-item active" id="why-1">
+            <div class="accordion-header" onclick="toggleAccordion('why-1')">
+              <span class="accordion-label">WHY 1</span>
+              <span class="accordion-title">Mengapa lulusan IT kesulitan menembus seleksi kerja web developer?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-answer">Gagal pada tahap penyaringan portofolio kode riil dan tes live coding teknis
+                industri.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item" id="why-2">
+            <div class="accordion-header" onclick="toggleAccordion('why-2')">
+              <span class="accordion-label">WHY 2</span>
+              <span class="accordion-title">Mengapa portofolio kode dan tes live coding mereka gagal lolos?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-answer">Proyek web yang mereka buat tidak menerapkan clean code, arsitektur yang
+                aman (security), dan performa optimal.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item" id="why-3">
+            <div class="accordion-header" onclick="toggleAccordion('why-3')">
+              <span class="accordion-label">WHY 3</span>
+              <span class="accordion-title">Mengapa mahasiswa tidak tahu cara menulis kode berstandar industri?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-answer">Proses belajar di kampus fokus pada teori kelulusan tugas akademik dasar,
+                bukan kualitas arsitektur skala industri.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item" id="why-4">
+            <div class="accordion-header" onclick="toggleAccordion('why-4')">
+              <span class="accordion-label">WHY 4</span>
+              <span class="accordion-title">Mengapa mahasiswa tidak belajar secara mandiri secara optimal?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-answer">Sumber belajar web sangat banyak dan terfragmentasi, memicu kelelahan
+                informasi (information overload) & tidak ada mentor pembimbing.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item" id="why-5">
+            <div class="accordion-header" onclick="toggleAccordion('why-5')">
+              <span class="accordion-label">WHY 5</span>
+              <span class="accordion-title">Mengapa mahasiswa tidak memiliki mentor / code reviewer profesional?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-answer">Menyewa mentor profesional atau pengulas kode industri sangat mahal dan
+                tidak terjangkau bagi mahasiswa vokasi.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Root Cause Alert Box -->
+        <div class="root-cause-alert">
+          <div class="root-cause-title">Akar Masalah Utama (Root Cause)</div>
+          <div class="root-cause-desc">Tidak adanya sistem bimbingan terstruktur dan umpan balik (code review)
+            baris-per-baris yang personal, terjangkau, dan adaptif untuk mengarahkan proses belajar coding mahasiswa IT
+            menuju standar industri web developer.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 4: AI QUESTION ENGINEERING
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-4">
+      <div class="slide-category">02. AI Question Engineering</div>
+      <h2 class="slide-title">
+        AI Question Engineering (Co-Founder Virtual)
+        <span class="slide-title-number">Slide 4 / 11</span>
+      </h2>
+
+      <div class="slide-content-grid two-cols">
+        <!-- Concepts and Examples Card -->
+        <div class="premium-card">
+          <h3 class="card-title">
+            <svg fill="none" stroke="var(--cyan)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            METODE PROMPT: AI SEBAGAI VIRTUAL CO-FOUNDER
+          </h3>
+          <div class="card-body" style="gap:0.75rem;">
+            <p>Kolaborasi strategis antara founder dan virtual AI Co-Founder. Kami merancang <strong>60 prompt
+                terstruktur</strong> yang terbagi ke dalam 4 kategori khusus untuk menyusun platform LearnIT Copilot.
+            </p>
+
+            <div class="prompt-box">
+              <div class="prompt-box-title bad">❌ Prompt Buruk (Malas & Dangkal)</div>
+              <div class="prompt-box-text">"Buatkan aplikasi absensi mahasiswa."</div>
+            </div>
+
+            <div class="prompt-box">
+              <div class="prompt-box-title good">✓ Prompt Baik (Kaya Konteks & Terstruktur)</div>
+              <div class="prompt-box-text" style="font-size:0.8rem;">"Saya ingin menyelesaikan masalah titip absen.
+                Berikan 5 pendekatan non-konvensional selain QR Code dan GPS, lengkap dengan kelebihan dan
+                kekurangannya."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kategori & Tab Box -->
+        <div class="premium-card positive" style="display:flex; flex-direction:column;">
+          <h3 class="card-title" style="color:var(--green)">
+            <svg fill="none" stroke="var(--green)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+              </path>
+            </svg>
+            60 PROMPT TERSTRUKTUR (KLIK TAB UNTUK DETIL)
+          </h3>
+
+          <div class="tab-nav">
+            <button class="tab-btn active" id="tab-btn-1" onclick="switchTab(1)">Eksplorasi (20)</button>
+            <button class="tab-btn" id="tab-btn-2" onclick="switchTab(2)">Validasi (20)</button>
+            <button class="tab-btn" id="tab-btn-3" onclick="switchTab(3)">Kompetitor (10)</button>
+            <button class="tab-btn" id="tab-btn-4" onclick="switchTab(4)">Inovasi (10)</button>
+          </div>
+
+          <div class="card-body"
+            style="position:relative; flex-grow:1; display:flex; flex-direction:column; min-height:0;">
+            <!-- Pane 1 -->
+            <div class="tab-content-pane active" id="pane-1">
+              <div class="prompt-bullets">
+                <div class="prompt-bullet-item">
+                  <strong>Skill Gap Web Dev</strong>
+                  Materi kuliah IT vs standard industri web (Next.js/Node.js).
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>React Code Smells</strong>
+                  5 kesalahan fatal struktur state & component React semester 5.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>Security Vulnerability</strong>
+                  Kesalahan keamanan web pemula (SQLi, XSS, CSRF).
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>Git Workflows</strong>
+                  Pentingnya pemahaman Branching & Pull Request industri.
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 2 -->
+            <div class="tab-content-pane" id="pane-2">
+              <div class="prompt-bullets">
+                <div class="prompt-bullet-item">
+                  <strong>AI Code Reviewer</strong>
+                  Efektifitas review otonom vs pengajaran manual mentor manusia.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>GitHub API Integration</strong>
+                  Validasi model tracking progress lewat hooks commit GitHub.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>Grading Otonom</strong>
+                  Penilaian kompleksitas kode (Big O Notation) otonom AI.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>Pencegahan Plagiarisme</strong>
+                  Menepis penyalahgunaan AI generatif di kalangan mahasiswa.
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 3 -->
+            <div class="tab-content-pane" id="pane-3">
+              <div class="prompt-bullets">
+                <div class="prompt-bullet-item">
+                  <strong>LeetCode Limitations</strong>
+                  Fokus pada algoritma murni, kurang menguji engineering web riil.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>GitHub Copilot</strong>
+                  Mengapa memicu kemalasan berpikir & bedanya dengan LearnIT.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>Bootcamp Coding</strong>
+                  Perbandingan model belajar adaptif AI vs biaya bootcamp mahal.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>LMS Statis Moodle</strong>
+                  Kesenjangan fitur interaktif LearnIT vs LMS kampus konvensional.
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 4 -->
+            <div class="tab-content-pane" id="pane-4">
+              <div class="prompt-bullets">
+                <div class="prompt-bullet-item">
+                  <strong>Web Server Crash</strong>
+                  Simulasi crash produksi web untuk latihan hotfix mahasiswa.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>RPG Skill Tree</strong>
+                  Peta jalan visual gamifikasi dengan unlockable skill branches.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>AI Scrum Simulator</strong>
+                  AI bertindak sebagai PO/Scrum Master memberi tiket Jira tiruan.
+                </div>
+                <div class="prompt-bullet-item">
+                  <strong>AI Code Historian</strong>
+                  Visualisasi kemajuan logika coding dari semester 1 ke 5.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 5: PERAN AGENTIC AI & DIVISION OF LABOR
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-5">
+      <div class="slide-category">03. Peran Agentic AI</div>
+      <h2 class="slide-title">
+        Peran Agentic AI & Pembagian Kerja (Division of Labor)
+        <span class="slide-title-number">Slide 5 / 11</span>
+      </h2>
+
+      <div class="slide-content-grid two-cols">
+        <!-- Division of Labor Table Card -->
+        <div class="premium-card">
+          <h3 class="card-title">
+            <svg fill="none" stroke="var(--cyan)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            MATRIKS PEMBAGIAN KERJA (COLLABORATION MATRIX)
+          </h3>
+          <div class="card-body" style="padding: 0; overflow: hidden;">
+            <style>
+              .custom-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.8rem;
+                text-align: left;
+                color: var(--text-muted);
+              }
+
+              .custom-table th,
+              .custom-table td {
+                padding: 0.5rem 0.6rem;
+                border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+              }
+
+              .custom-table th {
+                background: rgba(30, 41, 59, 0.6);
+                color: var(--text-white);
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.7rem;
+                letter-spacing: 0.5px;
+              }
+
+              .custom-table tr:hover {
+                background: rgba(56, 189, 248, 0.02);
+              }
+
+              .badge-yes {
+                background: var(--green-glow);
+                color: var(--green);
+                padding: 0.15rem 0.4rem;
+                border-radius: 0.25rem;
+                font-weight: 700;
+                font-size: 0.7rem;
+              }
+
+              .badge-no {
+                background: rgba(239, 68, 68, 0.1);
+                color: #f87171;
+                padding: 0.15rem 0.4rem;
+                border-radius: 0.25rem;
+                font-weight: 700;
+                font-size: 0.7rem;
+              }
+            </style>
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Aktivitas Pengembangan</th>
+                  <th style="text-align: center;">Dikerjakan AI</th>
+                  <th style="text-align: center;">Dikerjakan Mahasiswa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Analisis Masalah</strong></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Brainstorming Ide</strong></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Validasi Ide</strong></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pengambilan Keputusan Akhir</strong></td>
+                  <td style="text-align: center;"><span class="badge-no">TIDAK</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pembuatan Mockup</strong></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Penyusunan Proposal</strong></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                  <td style="text-align: center;"><span class="badge-yes">IYA</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Real Examples Card -->
+        <div class="premium-card positive">
+          <h3 class="card-title" style="color:var(--green)">
+            <svg fill="none" stroke="var(--green)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+              </path>
+            </svg>
+            5 CONTOH NYATA PENGGUNAAN AI GENERATIF
+          </h3>
+          <div class="card-body" style="font-size:0.8rem; gap:0.5rem; overflow-y: auto;">
+            <div class="icon-list-item" style="margin-bottom:0.4rem;">
+              <div class="icon-wrapper positive" style="width:1.2rem; height:1.2rem; font-size:0.75rem;">A</div>
+              <div class="icon-list-text">
+                <strong>Menghasilkan Alternatif Solusi</strong>
+                Meminta AI Co-Founder mengeksplorasi arsitektur state management (Zustand, Redux) beserta tradeoff
+                performanya.
+              </div>
+            </div>
+
+            <div class="icon-list-item" style="margin-bottom:0.4rem;">
+              <div class="icon-wrapper positive" style="width:1.2rem; height:1.2rem; font-size:0.75rem;">B</div>
+              <div class="icon-list-text">
+                <strong>Menganalisis Kompetitor</strong>
+                AI melakukan analisis SWOT terhadap platform bootcamp belajar coding konvensional (Dicoding, Coursera)
+                untuk menemukan celah pasar.
+              </div>
+            </div>
+
+            <div class="icon-list-item" style="margin-bottom:0.4rem;">
+              <div class="icon-wrapper positive" style="width:1.2rem; height:1.2rem; font-size:0.75rem;">C</div>
+              <div class="icon-list-text">
+                <strong>Membuat User Persona</strong>
+                Menyusun profil representatif Rian Wibowo (21 tahun) lengkap dengan goals, kebutuhan belajar, &
+                frustrasi utamanya secara mendalam.
+              </div>
+            </div>
+
+            <div class="icon-list-item" style="margin-bottom:0.4rem;">
+              <div class="icon-wrapper positive" style="width:1.2rem; height:1.2rem; font-size:0.75rem;">D</div>
+              <div class="icon-list-text">
+                <strong>Menyusun Requirement</strong>
+                Memandu AI merancang spesifikasi integrasi Model Context Protocol (MCP) untuk GitHub API & YouTube API
+                secara terstruktur.
+              </div>
+            </div>
+
+            <div class="icon-list-item" style="margin-bottom:0.4rem;">
+              <div class="icon-wrapper positive" style="width:1.2rem; height:1.2rem; font-size:0.75rem;">E</div>
+              <div class="icon-list-text">
+                <strong>Membuat Wireframe / Mockup</strong>
+                Menghasilkan desain mockup antarmuka visual berbasis terminal CLI interaktif & transkrip wawancara
+                simulator di platform.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 6: INTERACTIVE MCP FLOWCHART
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-6">
+      <div class="slide-category">03. Peran Agentic AI</div>
+      <h2 class="slide-title">
+        Integrasi Model Context Protocol (MCP)
+        <span class="slide-title-number">Slide 6 / 11</span>
+      </h2>
+
+      <div class="mcp-layout">
+        <!-- Interactive Diagram -->
+        <div class="mcp-interactive-diagram">
+          <div class="diagram-node" id="node-flutter" onclick="highlightMcp('all')">Frontend: React/Next.js App</div>
+          <div class="diagram-connection active" id="conn-1"></div>
+
+          <div class="diagram-node center active" id="node-mcp" onclick="highlightMcp('all')">
+            Model Context Protocol Hub
+            <p style="font-size:0.75rem; font-weight:normal; color:var(--text-muted); margin-top:0.25rem;">Orkestrasi
+              Agen AI & Tools API</p>
+          </div>
+
+          <div class="diagram-connection active" id="conn-2"></div>
+
+          <div class="diagram-row ends">
+            <div class="diagram-node" id="node-github" onclick="highlightMcp('github')">GitHub API</div>
+            <div class="diagram-node" id="node-youtube" onclick="highlightMcp('youtube')">YouTube / LMS API</div>
+            <div class="diagram-node" id="node-db" onclick="highlightMcp('db')">Progress Database</div>
+          </div>
+        </div>
+
+        <!-- Interactive details list -->
+        <div class="mcp-details-card">
+          <div class="mcp-server-detail-box active" id="detail-github" onclick="highlightMcp('github')">
+            <h4>
+              1. GitHub MCP Server
+              <span class="mcp-badge">github-mcp-v1</span>
+            </h4>
+            <p>Menghubungkan LLM otonom langsung ke repositori Git mahasiswa. Agen dapat mendownload kode, membaca
+              commits, menulis saran inline review di Pull Request, serta membuka issue bug secara otonom.</p>
+          </div>
+
+          <div class="mcp-server-detail-box" id="detail-youtube" onclick="highlightMcp('youtube')">
+            <h4>
+              2. YouTube & LMS MCP Server
+              <span class="mcp-badge">lms-search-mcp</span>
+            </h4>
+            <p>Mencari secara real-time video tutorial berkualitas di YouTube & Coursera, menyaring konten-konten usang,
+              lalu merangkai video terpilih menjadi silabus kurikulum personal harian mahasiswa.</p>
+          </div>
+
+          <div class="mcp-server-detail-box" id="detail-db" onclick="highlightMcp('db')">
+            <h4>
+              3. Local Database MCP Server
+              <span class="mcp-badge">sqlite-progress-mcp</span>
+            </h4>
+            <p>Menghubungkan LLM ke database progress lokal mahasiswa secara dua arah untuk menyimpan status kelulusan
+              materi, skor evaluasi code review, & memperbarui grafik pohon keterampilan (Skill Tree).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 7: SOLUTION PROPOSAL
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-7">
+      <div class="slide-category">04. Solution Proposal</div>
+      <h2 class="slide-title">
+        Proposal Solusi: LearnIT Copilot
+        <span class="slide-title-number">Slide 7 / 11</span>
+      </h2>
+
+      <div class="slide-content-grid" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <!-- Value Proposition banner -->
+        <div class="root-cause-alert"
+          style="border-color:var(--cyan); background:var(--cyan-glow); padding: 1rem 1.25rem;">
+          <div class="root-cause-title" style="color:var(--cyan);">Value Proposition Utama</div>
+          <div class="root-cause-desc" style="font-size:1.2rem;">"Mengubah Mahasiswa IT Menjadi Profesional Siap Kerja
+            Lewat Peta Belajar Adaptif, Tinjauan Kode Otomatis di GitHub, dan Simulasi Karir Bertenaga Agentic AI."
+          </div>
+        </div>
+
+        <!-- User Flow Stepper -->
+        <div class="user-flow-container"
+          style="display: flex; gap: 0.75rem; background: rgba(30, 41, 59, 0.3); border: 1px solid var(--border-card); border-radius: 0.75rem; padding: 0.75rem;">
+          <div
+            style="font-size: 0.7rem; font-weight: 800; color: var(--cyan); text-transform: uppercase; writing-mode: vertical-lr; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border-card); padding-right: 0.5rem; margin-right: 0.25rem;">
+            USER FLOW
+          </div>
+          <div class="flow-step" style="flex: 1; font-size: 0.75rem; line-height: 1.3;">
+            <strong style="color: var(--text-white); display: block; margin-bottom: 0.15rem;">1. Koneksi GitHub</strong>
+            Mahasiswa login & mengintegrasikan repositori proyeknya.
+          </div>
+          <div style="display:flex; align-items:center; color: var(--border-card); font-weight:bold;">→</div>
+          <div class="flow-step" style="flex: 1; font-size: 0.75rem; line-height: 1.3;">
+            <strong style="color: var(--text-white); display: block; margin-bottom: 0.15rem;">2. Peta Belajar</strong>
+            AI menganalisis skill gap & menyusun kurikulum dinamis.
+          </div>
+          <div style="display:flex; align-items:center; color: var(--border-card); font-weight:bold;">→</div>
+          <div class="flow-step" style="flex: 1; font-size: 0.75rem; line-height: 1.3;">
+            <strong style="color: var(--text-white); display: block; margin-bottom: 0.15rem;">3. Audit Otomatis</strong>
+            Mahasiswa push code; Git Auditor me-review baris-per-baris.
+          </div>
+          <div style="display:flex; align-items:center; color: var(--border-card); font-weight:bold;">→</div>
+          <div class="flow-step" style="flex: 1; font-size: 0.75rem; line-height: 1.3;">
+            <strong style="color: var(--text-white); display: block; margin-bottom: 0.15rem;">4. Live Wawancara</strong>
+            AI menguji mahasiswa berdasar kode proyek riil di GitHub.
+          </div>
+        </div>
+
+        <!-- 3 Pillars Grid -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem; flex-grow:1;">
+          <div class="premium-card">
+            <h3 class="card-title">
+              <span class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 01.553-.894L9 2m0 18l6-3m-6 3V2m6 15l5.447 2.724A1 1 0 0021 18.882V8.118a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 2">
+                  </path>
+                </svg></span>
+              1. Adaptive Pathfinder
+            </h3>
+            <div class="card-body" style="font-size:0.85rem;">
+              <p><strong>Peta Jalan Belajar Dinamis</strong><br>Menyusun roadmap belajar unik yang menyesuaikan
+                kecepatan belajar mahasiswa. Silabus otomatis memendek / memanjang berdasarkan deteksi kemajuan &
+                evaluasi portofolio otonom.</p>
+              <p><strong>Kurasi Otonom</strong><br>Video tutorial WPU Sandhika Galih & platform pembelajaran dikurasi
+                real-time melalui MCP Server.</p>
+            </div>
+          </div>
+
+          <div class="premium-card">
+            <h3 class="card-title">
+              <span class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg></span>
+              2. Autonomous Git Auditor
+            </h3>
+            <div class="card-body" style="font-size:0.85rem;">
+              <p><strong>Virtual Senior Engineer</strong><br>Mengevaluasi setiap push & Pull Request mahasiswa di GitHub
+                secara baris-per-baris. Memberikan saran refactoring inline instan.</p>
+              <p><strong>Kualitas Kode & Keamanan</strong><br>Memastikan kode web menerapkan clean code modular, best
+                practice framework web, serta audit keamanan (secure) otomatis.</p>
+            </div>
+          </div>
+
+          <div class="premium-card">
+            <h3 class="card-title">
+              <span class="icon-wrapper"><svg style="width:0.85rem;height:0.85rem" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                  </path>
+                </svg></span>
+              3. Role Interview Simulator
+            </h3>
+            <div class="card-body" style="font-size:0.85rem;">
+              <p><strong>Simulasi Technical Realistis</strong><br>Simulator technical interview interaktif berbasis AI
+                yang pertanyaannya menyesuaikan dengan portofolio kode riil buatan mahasiswa di GitHub.</p>
+              <p><strong>Feedback Taktis</strong><br>Penilaian kuantitatif instan berserta saran perbaikan cara
+                komunikasi teknis & pemahaman teori web.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 8: MOCKUP 1 - ADAPTIVE PATHFINDER
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-8">
+      <div class="slide-category">04. Solution Proposal</div>
+      <h2 class="slide-title">
+        Mockup Antarmuka: Adaptive Pathfinder
+        <span class="slide-title-number">Slide 8 / 12</span>
+      </h2>
+
+      <div class="slide-content-grid dashboard-grid">
+        <!-- Left Side: Skill Tree -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                  </path>
+                </svg>
+                PETA BELAJAR (SKILL TREE)
+              </h3>
+              <span class="panel-subtitle">Spesialisasi: Junior Full-Stack Web Developer</span>
+            </div>
+            <span class="mcp-status-tag"
+              style="background: var(--cyan-glow); color: var(--cyan); border-color: rgba(56, 189, 248, 0.2);">LEVEL
+              5</span>
+          </div>
+
+          <div class="skill-tree-list">
+            <div class="skill-node completed">
+              <div class="skill-info">
+                <div class="skill-icon-status">✓</div>
+                <div class="skill-details">
+                  <h4>1. Dasar HTML, CSS & JavaScript ES6+</h4>
+                  <p>Variabel, DOM Manipulation, Async/Await, Array Methods</p>
+                </div>
+              </div>
+              <span class="arrow-right-icon">→</span>
+            </div>
+
+            <div class="skill-node completed">
+              <div class="skill-info">
+                <div class="skill-icon-status">✓</div>
+                <div class="skill-details">
+                  <h4>2. React Hooks & Component Lifecycle</h4>
+                  <p>useState, useEffect, Custom Hooks, Conditional Rendering</p>
+                </div>
+              </div>
+              <span class="arrow-right-icon">→</span>
+            </div>
+
+            <div class="skill-node active-focus">
+              <div class="skill-info">
+                <div class="skill-icon-status">●</div>
+                <div class="skill-details">
+                  <h4>3. State Management (Zustand / Redux)</h4>
+                  <p>Global Store, Actions, Selectors, Persist middleware</p>
+                </div>
+              </div>
+              <span class="arrow-right-icon" style="color: var(--yellow);">→</span>
+            </div>
+
+            <div class="skill-node locked">
+              <div class="skill-info">
+                <div class="skill-icon-status">🔒</div>
+                <div class="skill-details">
+                  <h4>4. Next.js App Router & Server Actions</h4>
+                  <p>Server vs Client components, Server Actions</p>
+                </div>
+              </div>
+              <span class="arrow-right-icon">→</span>
+            </div>
+
+            <div class="skill-node locked">
+              <div class="skill-info">
+                <div class="skill-icon-status">🔒</div>
+                <div class="skill-details">
+                  <h4>5. REST API & Database Integration</h4>
+                  <p>Express.js, Prisma ORM, PostgreSQL</p>
+                </div>
+              </div>
+              <span class="arrow-right-icon">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Active Focus Material Detail -->
+        <div class="panel-card success">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                  </path>
+                </svg>
+                MATERI PEMBELAJARAN ADAPTIF
+              </h3>
+              <span class="panel-subtitle">Saran Kurasi otonom via YouTube & LMS MCP Server</span>
+            </div>
+            <span class="mcp-status-tag">YouTube MCP Active</span>
+          </div>
+
+          <div class="mcp-query-box">
+            <div class="mcp-query-header">
+              <span>Query MCP:</span>
+              <span style="color:var(--text-dim);">Real-time Search</span>
+            </div>
+            <div class="mcp-query-text">youtube.search("Zustand State Management tutorial", lang: "id", creator: "WPU")
+            </div>
+          </div>
+
+          <div class="content-card-video">
+            <div class="video-thumbnail-mock">
+              <div class="play-btn-mock" onclick="alert('Memutar video simulasi: Panduan Lengkap Zustand oleh WPU!')">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"></path>
+                </svg>
+              </div>
+              <span class="video-badge-duration">20:15</span>
+            </div>
+            <div class="video-info-box">
+              <div class="video-channel">Web Programming UNPAS (WPU)</div>
+              <div class="video-title">Panduan Lengkap Zustand - State Management React Termudah</div>
+            </div>
+          </div>
+
+          <div class="task-box">
+            <div class="task-header">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                </path>
+              </svg>
+              Tugas Praktik Mandiri
+            </div>
+            <p class="task-desc">Buatlah aplikasi e-commerce shopping cart dengan Zustand untuk mengelola state cart.
+            </p>
+            <div class="task-actions">
+              <button class="action-btn primary" onclick="navigateSlide(1)">Hubungkan Repositori Tugas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 9: MOCKUP 2 - AUTONOMOUS GIT AUDITOR
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-9">
+      <div class="slide-category">04. Solution Proposal</div>
+      <h2 class="slide-title">
+        Mockup Antarmuka: Autonomous Git Auditor
+        <span class="slide-title-number">Slide 9 / 12</span>
+      </h2>
+
+      <div class="slide-content-grid dashboard-grid">
+        <!-- Code Diff Panel -->
+        <div class="panel-card">
+          <div class="panel-header" style="margin-bottom:0.5rem; border:none; padding:0;">
+            <div>
+              <h3 class="panel-title">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+                GIT AUDITOR CODE REVIEW
+              </h3>
+              <span class="panel-subtitle">Review otomatis baris-per-baris via GitHub Webhook</span>
+            </div>
+          </div>
+
+          <div class="git-header-bar">
+            <div class="repo-info">
+              <svg style="width:1.1rem;height:1.1rem;color:var(--text-muted);" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z">
+                </path>
+              </svg>
+              <span class="repo-name">rian/e-commerce-zustand</span>
+              <span class="repo-branch">PR #1</span>
+            </div>
+            <div class="commit-score-badge" id="slide-audit-score">
+              <span>Score:</span>
+              <strong>B+</strong>
+            </div>
+          </div>
+
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="term-dots">
+                <div class="term-dot red"></div>
+                <div class="term-dot yellow"></div>
+                <div class="term-dot green"></div>
+              </div>
+              <div class="term-title">useCartStore.js - Code Diff</div>
+              <div style="width:2rem;"></div>
+            </div>
+            <div class="terminal-body" style="padding:0;">
+              <div class="code-diff-container">
+                <div class="diff-line">
+                  <span class="diff-num">14</span>
+                  <span class="diff-content"> fetchProducts: async () => {</span>
+                </div>
+
+                <div class="diff-line deletion" id="slide-code-deleted-1">
+                  <span class="diff-num">15</span>
+                  <span class="diff-content">- const res = await fetch('/api/products');</span>
+                  <div class="diff-tooltip">Kode Awal: Fetch langsung tanpa status loading / error handling</div>
+                </div>
+                <div class="diff-line deletion" id="slide-code-deleted-2">
+                  <span class="diff-num">16</span>
+                  <span class="diff-content">- const data = await res.json();</span>
+                </div>
+                <div class="diff-line deletion" id="slide-code-deleted-3">
+                  <span class="diff-num">17</span>
+                  <span class="diff-content">- set({ products: data });</span>
+                </div>
+
+                <!-- Added lines -->
+                <div class="diff-line addition" id="slide-code-added-1">
+                  <span class="diff-num">15</span>
+                  <span class="diff-content">+ try {</span>
+                  <div class="diff-tooltip">Saran AI: Bungkus dengan try-catch & status loading</div>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-2">
+                  <span class="diff-num">16</span>
+                  <span class="diff-content">+ set({ loading: true, error: null });</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-3">
+                  <span class="diff-num">17</span>
+                  <span class="diff-content">+ const res = await fetch('/api/products');</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-4">
+                  <span class="diff-num">18</span>
+                  <span class="diff-content">+ if (!res.ok) throw new Error('Gagal mengambil data');</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-5">
+                  <span class="diff-num">19</span>
+                  <span class="diff-content">+ const data = await res.json();</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-6">
+                  <span class="diff-num">20</span>
+                  <span class="diff-content">+ set({ products: data, loading: false });</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-7">
+                  <span class="diff-num">21</span>
+                  <span class="diff-content">+ } catch (err) {</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-8">
+                  <span class="diff-num">22</span>
+                  <span class="diff-content">+ set({ error: err.message, loading: false });</span>
+                </div>
+                <div class="diff-line addition" id="slide-code-added-9">
+                  <span class="diff-num">23</span>
+                  <span class="diff-content">+ }</span>
+                </div>
+
+                <div class="diff-line">
+                  <span class="diff-num">24</span>
+                  <span class="diff-content"> },</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: AI Auditor Feedback -->
+        <div class="panel-card success">
+          <div class="panel-header">
+            <div class="auditor-avatar-section" style="width:100%;">
+              <div class="auditor-avatar">AI</div>
+              <div class="auditor-meta">
+                <h4>Virtual Senior Engineer</h4>
+                <p>GitHub PR Auditor</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="suggestion-box">
+            <span class="suggestion-header">Analisis AI (Temuan Audit)</span>
+            <p class="suggestion-text">"Saya menemukan masalah pada metode fetch data asinkronus Zustand store Anda."
+            </p>
+            <div class="suggestion-rationale">
+              <strong>Reviewer Comment:</strong>
+              "Anda lupa menangani status loading, error, dan validasi response status HTTP. Ini berpotensi membuat UI
+              freeze atau error saat server down."
+            </div>
+
+            <div class="suggestion-actions">
+              <button class="suggestion-btn accept" onclick="applySlideRefactoring()">
+                <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Terima & Terapkan Refactoring
+              </button>
+              <button class="suggestion-btn query"
+                onclick="alert('Pertanyaan dikirim ke AI: Bagaimana setup unit testing otomatis pada repositori Zustand ini?')">Tanya
+                AI Mengapa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 10: MOCKUP 3 - INTERVIEW SIMULATOR
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-10">
+      <div class="slide-category">04. Solution Proposal</div>
+      <h2 class="slide-title">
+        Mockup Antarmuka: Simulator Wawancara Cerdas
+        <span class="slide-title-number">Slide 10 / 12</span>
+      </h2>
+
+      <div class="slide-content-grid interview-container">
+        <!-- Chat Interface Left Side -->
+        <div class="chat-panel">
+          <div class="chat-header">
+            <div class="chat-title-info">
+              <div class="pulse-dot"></div>
+              <span>SIMULATOR WAWANCARA KERJA IT V1.0</span>
+            </div>
+            <span class="interview-role-tag">Junior Web Dev</span>
+          </div>
+
+          <div class="chat-body-pres" id="slide-chat-stream">
+            <div class="message-bubble-pres ai">
+              <div class="bubble-meta-pres">Interviewer AI</div>
+              Halo Rian. Saya melihat di repositori <strong>e-commerce-zustand</strong> Anda, Anda menggunakan Zustand.
+              Bisa Anda jelaskan mengapa memilih Zustand dibanding Redux Toolkit untuk state management di e-commerce
+              tersebut?
+            </div>
+            <div id="slide-chat-placeholder"></div>
+          </div>
+
+          <div class="chat-input-panel">
+            <div class="input-instruction" id="slide-input-helper">Pilih Jawaban Terbaik Anda:</div>
+
+            <div class="option-list" id="slide-choices-container">
+              <button class="option-card-btn correct" onclick="selectSlideAnswer('A')">
+                <strong>Opsi A</strong>
+                <span>"Saya memilih Zustand karena boilerplate-nya sedikit, konfigurasinya sederhana, tidak membutuhkan
+                  Context Provider di root, dan performa cepat karena tidak memicu re-render pada komponen yang tidak
+                  berlangganan."</span>
+              </button>
+
+              <button class="option-card-btn wrong" onclick="selectSlideAnswer('B')">
+                <strong>Opsi B</strong>
+                <span>"Saya pilih Zustand karena Redux itu kuno dan lambat. Zustand jauh lebih modern, fiturnya lebih
+                  canggih, dan semua programmer React pro sekarang sudah beralih sepenuhnya dari Redux."</span>
+              </button>
+            </div>
+
+            <!-- Custom text input -->
+            <div class="custom-input-row" id="slide-text-input-field" style="display:none;">
+              <input type="text" class="chat-text-input" id="slide-custom-text-input"
+                placeholder="Ketik tanggapan teknis lanjutan Anda...">
+              <button class="send-msg-btn" onclick="submitSlideCustomText()">
+                <span>Kirim</span>
+                <svg style="width:0.8rem;height:0.8rem;" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M2 21l21-9L2 3v7l15 2-15 2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Dashboard Right Side -->
+        <div class="perf-card">
+          <div class="panel-header" style="border:none; padding:0; margin-bottom:0.5rem;">
+            <h3 class="panel-title" style="color:var(--purple)">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                </path>
+              </svg>
+              EVALUASI KEMAMPUAN NYATA
+            </h3>
+          </div>
+
+          <div class="circular-progress-container">
+            <div style="position:relative; display:flex; align-items:center; justify-content:center;">
+              <svg class="circular-svg">
+                <circle class="circle-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="circle-fill" id="slide-circular-score-fill" cx="50" cy="50" r="42"
+                  style="stroke-dasharray: 263.89; stroke-dashoffset: 263.89;"></circle>
+              </svg>
+              <div class="circle-text" id="slide-circular-score-val" style="font-size:1.3rem;">0</div>
+            </div>
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); margin-top:0.5rem;">Skor
+              Jawaban</span>
+          </div>
+
+          <div class="perf-metric-row">
+            <div class="perf-metric-item">
+              <span class="perf-metric-name">Pemahaman Teori</span>
+              <span class="perf-metric-val" id="slide-metric-theory">-</span>
+            </div>
+            <div class="perf-metric-item">
+              <span class="perf-metric-name">Logika Arsitektural</span>
+              <span class="perf-metric-val" id="slide-metric-logic">-</span>
+            </div>
+            <div class="perf-metric-item">
+              <span class="perf-metric-name">Kedewasaan Dev</span>
+              <span class="perf-metric-val" id="slide-metric-maturity">-</span>
+            </div>
+          </div>
+
+          <div class="perf-tips">
+            <strong>💡 Tips:</strong>
+            <span id="slide-interview-tips">Pilihlah jawaban yang menyajikan argumen teknis terukur seperti rendering
+              footprint dan subskripsi granular.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 11: REFLECTION & CRITICAL REVIEW
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-11">
+      <div class="slide-category">05. Reflection & Critical Review</div>
+      <h2 class="slide-title">
+        Reflection & Critical Review
+        <span class="slide-title-number">Slide 11 / 12</span>
+      </h2>
+
+      <div class="slide-content-grid two-cols" style="grid-template-rows:1fr 1fr; gap:1.25rem;">
+        <!-- Card 1 -->
+        <div class="premium-card">
+          <h3 class="card-title">
+            <svg fill="none" stroke="var(--cyan)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M14 10h4.757c1.246 0 2.273-1.011 2.273-2.257V3.257c0-1.246-1.027-2.257-2.273-2.257H1.273C.027 1 0 2.011 0 3.257v4.486c0 1.246 1.027 2.257 2.273 2.257H7m7 12h4.757c1.246 0 2.273-1.011 2.273-2.257v-4.486c0-1.246-1.027-2.257-2.273-2.257H1.273C.027 11 0 12.011 0 13.257v4.486c0 1.246 1.027 2.257 2.273 2.257H7">
+              </path>
+            </svg>
+            1. AI Paling Membantu
+          </h3>
+          <div class="card-body" style="font-size:0.85rem; gap:0.5rem;">
+            <p><strong>Integrasi Model Context Protocol (MCP)</strong></p>
+            <p>Sangat membantu dalam merumuskan arsitektur yang aman dan otonom untuk menghubungkan LLM ke repositori
+              GitHub mahasiswa secara langsung. Konsep ini memecahkan keterbatasan LMS pasif konvensional dengan
+              menghadirkan <em>inline code review</em> otonom.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="premium-card">
+          <h3 class="card-title" style="color:var(--yellow)">
+            <svg fill="none" stroke="var(--yellow)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            2. Kelemahan & Koreksi AI
+          </h3>
+          <div class="card-body" style="font-size:0.85rem; gap:0.5rem;">
+            <p><strong>Vulnerability Remote Code Execution (RCE)</strong></p>
+            <p>AI sempat merekomendasikan penjalanan unit testing otonom milik mahasiswa langsung di kontainer Docker
+              server utama. Ini beresiko tinggi! Kami mengoreksinya agar eksekusi testing berjalan di <strong>sandbox
+                terisolasi</strong> di sisi client atau server terpisah.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="premium-card">
+          <h3 class="card-title">
+            <svg fill="none" stroke="var(--cyan)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+              </path>
+            </svg>
+            3. Cara Verifikasi Output AI
+          </h3>
+          <div class="card-body" style="font-size:0.85rem; gap:0.5rem;">
+            <p><strong>Validasi Tiga Arah (Triangulasi)</strong></p>
+            <p>Mencocokkan peta belajar buatan AI dengan panduan kurikulum standard global (<em>Roadmap.sh</em>),
+              mencoba otonom kode refactoring usulan AI di kompiler lokal, & berdiskusi intensif dengan Dosen Pengampu
+              mata kuliah RPL.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="premium-card">
+          <h3 class="card-title" style="color:var(--yellow)">
+            <svg fill="none" stroke="var(--yellow)" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            4. Dampak Tanpa AI Generatif
+          </h3>
+          <div class="card-body" style="font-size:0.85rem; gap:0.5rem;">
+            <p><strong>Mundur Menjadi LMS Pasif Statis</strong></p>
+            <p>Tanpa AI, platform hanya akan menjadi portal materi static konvensional seperti Moodle. Kehilangan AI
+              berarti tidak ada peta jalan adaptif individual, tidak ada feedback coding otonom PR, & tidak ada
+              simulator interview interaktif.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------
+         SLIDE 12: CLOSING / THANK YOU
+         -------------------------------------------------- -->
+    <section class="slide" id="slide-12">
+      <div class="closing-slide">
+        <div class="closing-frame"></div>
+        <div class="closing-eyebrow">SELESAI</div>
+        <h1 class="closing-main-title">TERIMA KASIH!</h1>
+        <p class="closing-subtitle">LearnIT Copilot: Mengakselerasi Kesiapan Kerja Mahasiswa IT dengan Agen AI Otonom.
+        </p>
+        <p class="closing-desc">Semoga presentasi interaktif modern ini dapat memberikan gambaran terbaik untuk tugas
+          UTS Rekayasa Perangkat Lunak Agentic AI!</p>
+        <div class="closing-badge">Teknologi Rekayasa Perangkat Lunak | Politeknik Negeri Padang</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================
+       FOOTER & PROGRESS BAR
+       ==================================================== -->
   <footer>
-    <div class="footer-text">
-      &copy; 2026 Rivanzi Hidayatullah. UTS Topik Khusus - Rekayasa Perangkat Lunak Agentic AI.
+    <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">
+      UTS RPL AGENTIC AI
     </div>
-    <div class="footer-links">
-      <a href="https://github.com/rivzee/UTS_TOPSUS" target="_blank" class="footer-link">
-        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+
+    <div class="slide-progress-container">
+      <div class="slide-progress-bar">
+        <div class="slide-progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="slide-counter">
+        <span id="current-slide-label">Cover Presentasi</span>
+        <span>Slide <strong id="slide-index-label" style="color:var(--text-white)">1</strong> dari 11</span>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <button class="nav-btn" id="prev-btn" onclick="navigateSlide(-1)" disabled>
+        <svg style="width:1.25rem;height:1.25rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
         </svg>
-        Repository
-      </a>
+      </button>
+      <button class="nav-btn" id="next-btn" onclick="navigateSlide(1)">
+        <svg style="width:1.25rem;height:1.25rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
   </footer>
 
+  <!-- ====================================================
+       CORE INTERACTIVE LOGIC (JAVASCRIPT)
+       ==================================================== -->
   <script>
-    // Modal controls
-    const modal = document.getElementById('proposalModal');
-    let proposalLoaded = false;
+    // Presentasi Slides configuration
+    const totalSlides = 12;
+    let currentSlide = 1;
 
-    function openProposalModal() {
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    const slideLabels = [
+      "Cover Presentasi",
+      "01. Problem Discovery",
+      "01. Root Cause Analysis (5 Whys)",
+      "02. AI Question Engineering",
+      "03. Peran Agentic AI & Pembagian Kerja",
+      "03. Integrasi Model Context Protocol (MCP)",
+      "04. Proposal Solusi: LearnIT Copilot",
+      "04. Mockup: Adaptive Pathfinder",
+      "04. Mockup: Autonomous Git Auditor",
+      "04. Mockup: Simulator Wawancara Cerdas",
+      "05. Reflection & Critical Review",
+      "Selesai / Penutup"
+    ];
 
-      if (!proposalLoaded) {
-        fetch('UTS_Proposal_LearnIT_Copilot.md')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Gagal mengambil file proposal');
-            }
-            return response.text();
-          })
-          .then(markdownText => {
-            // Render markdown to HTML
-            document.getElementById('proposalMarkdownContent').innerHTML = marked.parse(markdownText);
-            proposalLoaded = true;
-          })
-          .catch(error => {
-            console.error(error);
-            document.getElementById('proposalMarkdownContent').innerHTML = `
-              <div style="text-align: center; padding: 3rem; color: #ef4444;">
-                <svg style="width: 3rem; height: 3rem; margin-bottom: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                </svg>
-                <p>Gagal memuat dokumen proposal.</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-dim);">${error.message}</p>
-                <a href="UTS_Proposal_LearnIT_Copilot.md" target="_blank" style="display: inline-block; margin-top: 1rem; color: var(--purple); text-decoration: underline;">Buka file MD secara langsung</a>
-              </div>
+    // Initialize slide index on load
+    updateSlideDisplay();
+
+    function navigateSlide(direction) {
+      const target = currentSlide + direction;
+      if (target >= 1 && target <= totalSlides) {
+        // Deactivate current slide
+        document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+
+        // Update index
+        currentSlide = target;
+
+        // Activate new slide
+        document.getElementById(`slide-${currentSlide}`).classList.add('active');
+
+        // Update visuals
+        updateSlideDisplay();
+      }
+    }
+
+    function updateSlideDisplay() {
+      // Prev / Next button states
+      document.getElementById('prev-btn').disabled = (currentSlide === 1);
+      document.getElementById('next-btn').disabled = (currentSlide === totalSlides);
+
+      // Progress Fill & Label
+      const percent = ((currentSlide) / totalSlides) * 100;
+      document.getElementById('progress-fill').style.width = `${percent}%`;
+      document.getElementById('current-slide-label').textContent = slideLabels[currentSlide - 1];
+      document.getElementById('slide-index-label').textContent = currentSlide;
+
+      // Reset score animation on slide 10 mockup activation
+      if (currentSlide === 10) {
+        // Wrap in a safe checker in case the function is not yet loaded
+        if (typeof setSlideCircularScore === 'function') {
+          setSlideCircularScore(0);
+        }
+      }
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        navigateSlide(1);
+        e.preventDefault();
+      } else if (e.key === 'ArrowLeft') {
+        navigateSlide(-1);
+        e.preventDefault();
+      }
+    });
+
+    // --------------------------------------------------
+    // SLIDE 3: ACCORDION INTERACTIVITY
+    // --------------------------------------------------
+    function toggleAccordion(itemId) {
+      const items = document.querySelectorAll('.accordion-item');
+      items.forEach(item => {
+        if (item.id === itemId) {
+          item.classList.toggle('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // --------------------------------------------------
+    // SLIDE 4: TAB INTERACTIVITY
+    // --------------------------------------------------
+    function switchTab(index) {
+      // Toggle Tab Buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach((btn, i) => {
+        if (i === (index - 1)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Toggle Panes
+      const panes = document.querySelectorAll('.tab-content-pane');
+      panes.forEach((pane, i) => {
+        if (i === (index - 1)) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+    }
+
+    // --------------------------------------------------
+    // SLIDE 6: MCP INTERACTIVE DIAGRAM HIGHLIGHTING
+    // --------------------------------------------------
+    function highlightMcp(server) {
+      // Detail boxes toggles
+      const details = document.querySelectorAll('.mcp-server-detail-box');
+      details.forEach(box => {
+        if (server === 'all' || box.id === `detail-${server}`) {
+          box.classList.add('active');
+        } else {
+          box.classList.remove('active');
+        }
+      });
+
+      // Diagram nodes highlight toggles
+      const nodes = ['github', 'youtube', 'db'];
+      nodes.forEach(nodeName => {
+        const node = document.getElementById(`node-${nodeName}`);
+        if (server === 'all' || server === nodeName) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
+      });
+    }
+
+    // --------------------------------------------------
+    // SLIDE 9: AUTONOMOUS GIT AUDITOR INTERACTIVITY
+    // --------------------------------------------------
+    function applySlideRefactoring() {
+      // Highlight new lines
+      const addedLines = [
+        'slide-code-added-1', 'slide-code-added-2', 'slide-code-added-3', 'slide-code-added-4',
+        'slide-code-added-5', 'slide-code-added-6', 'slide-code-added-7', 'slide-code-added-8',
+        'slide-code-added-9'
+      ];
+
+      // Hide deleted lines
+      const del1 = document.getElementById('slide-code-deleted-1');
+      const del2 = document.getElementById('slide-code-deleted-2');
+      const del3 = document.getElementById('slide-code-deleted-3');
+      if (del1) del1.style.display = 'none';
+      if (del2) del2.style.display = 'none';
+      if (del3) del3.style.display = 'none';
+
+      // Flash added lines with green glow
+      addedLines.forEach(id => {
+        const line = document.getElementById(id);
+        if (line) line.classList.add('highlight-applied');
+      });
+
+      // Update score badge
+      const scoreBadge = document.getElementById('slide-audit-score');
+      if (scoreBadge) {
+        scoreBadge.style.background = 'rgba(16, 185, 129, 0.25)';
+        scoreBadge.style.borderColor = 'var(--green)';
+        scoreBadge.innerHTML = '<span>Score:</span> <strong>A</strong>';
+      }
+
+      alert('Saran refactoring berhasil diterapkan langsung ke PR GitHub! Skor repositori Rian meningkat menjadi A.');
+    }
+
+    // --------------------------------------------------
+    // SLIDE 10: INTERACTIVE INTERVIEW SIMULATOR GAME
+    // --------------------------------------------------
+    function setSlideCircularScore(score) {
+      const circleFill = document.getElementById('slide-circular-score-fill');
+      const scoreVal = document.getElementById('slide-circular-score-val');
+      if (!circleFill || !scoreVal) return;
+
+      // Dashoffset calculation (Circumference of r=42 is ~263.89)
+      const maxOffset = 263.89;
+      const offset = maxOffset - (score / 100) * maxOffset;
+
+      circleFill.style.strokeDashoffset = offset;
+
+      // Color matching based on score
+      if (score >= 80) {
+        circleFill.style.stroke = 'var(--green)';
+      } else if (score >= 50) {
+        circleFill.style.stroke = 'var(--yellow)';
+      } else {
+        circleFill.style.stroke = 'var(--red)';
+      }
+
+      // Count-up animation
+      let startScore = 0;
+      const duration = 1000; // 1 second
+      const stepTime = 10;
+      const step = (score / duration) * stepTime;
+
+      const timer = setInterval(() => {
+        startScore += step;
+        if (startScore >= score) {
+          clearInterval(timer);
+          scoreVal.textContent = Math.round(score);
+        } else {
+          scoreVal.textContent = Math.round(startScore);
+        }
+      }, stepTime);
+    }
+
+    function selectSlideAnswer(option) {
+      const placeholder = document.getElementById('slide-chat-placeholder');
+      const choicesContainer = document.getElementById('slide-choices-container');
+      const helperLabel = document.getElementById('slide-input-helper');
+      const chatStream = document.getElementById('slide-chat-stream');
+      if (!placeholder || !choicesContainer || !helperLabel || !chatStream) return;
+
+      if (option === 'A') {
+        placeholder.innerHTML = `
+          <!-- Rian Answer -->
+          <div class="message-bubble-pres user" style="margin-top: 1rem;">
+            <div class="bubble-meta-pres">Rian Wibowo</div>
+            Saya memilih Zustand karena boilerplate-nya sangat sedikit, konfigurasinya sederhana, tidak membutuhkan Context Provider di root app, dan kinerjanya sangat cepat karena tidak memicu re-render di komponen yang tidak berlangganan.
+          </div>
+          
+          <!-- AI evaluation -->
+          <div class="message-bubble-pres evaluation" style="margin-top: 1.25rem;">
+            <div class="evaluation-header-row">
+              <div class="bubble-meta-pres">Evaluasi AI (Senior Web Architect)</div>
+              <span class="eval-score-pill">Skor: 85/100 (SANGAT BAGUS!)</span>
+            </div>
+            <strong>Umpan Balik:</strong> Jawaban tepat sasaran dan sangat berbobot teknis! Anda menjelaskan aspek modularitas dan optimalisasi rendering (subskripsi) dengan tepat.<br><br>
+            <strong>Tips Tambahan:</strong> Jelaskan juga mengenai closures internal Zustand dan perbandingan bundle size-nya untuk nilai bonus.
+          </div>
+
+          <!-- Loading AI typing next question -->
+          <div class="message-bubble-pres ai" id="slide-typing-next-question" style="margin-top: 1.25rem;">
+            <div class="bubble-meta-pres">Interviewer AI</div>
+            <div class="typing-loader">
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+              <div class="typing-dot"></div>
+            </div>
+          </div>
+        `;
+
+        choicesContainer.style.display = 'none';
+        helperLabel.textContent = 'Menunggu tanggapan AI...';
+        chatStream.scrollTop = chatStream.scrollHeight;
+
+        // Update Score panel
+        setSlideCircularScore(85);
+        document.getElementById('slide-metric-theory').textContent = 'Sangat Bagus (88)';
+        document.getElementById('slide-metric-logic').textContent = 'Kuat (84)';
+        document.getElementById('slide-metric-maturity').textContent = 'Matang (83)';
+        document.getElementById('slide-interview-tips').textContent = "Luar biasa! Jawaban Anda menunjukkan pemahaman state management berbasis subskripsi granular React.";
+
+        // Simulate typing delay for next question
+        setTimeout(() => {
+          const typingBubble = document.getElementById('slide-typing-next-question');
+          if (typingBubble) {
+            typingBubble.innerHTML = `
+              <div class="bubble-meta-pres">Interviewer AI</div>
+              Bagus sekali Rian! Sekarang, bagaimana cara Anda mengoptimalkan render performance di React menggunakan selectors dari Zustand?
             `;
-          });
+          }
+
+          helperLabel.textContent = 'Tulis Tanggapan Anda:';
+          const inputField = document.getElementById('slide-text-input-field');
+          if (inputField) inputField.style.display = 'flex';
+          chatStream.scrollTop = chatStream.scrollHeight;
+        }, 2000);
+
+      } else if (option === 'B') {
+        placeholder.innerHTML = `
+          <!-- Rian Answer -->
+          <div class="message-bubble-pres user" style="margin-top: 1rem;">
+            <div class="bubble-meta-pres">Rian Wibowo</div>
+            Saya pilih Zustand karena Redux itu terlalu kuno & lambat, sedangkan Zustand itu modern, fiturnya lebih canggih, dan semua programmer React professional sekarang sudah tidak ada yang pakai Redux lagi.
+          </div>
+          
+          <!-- AI evaluation -->
+          <div class="message-bubble-pres evaluation warning" style="margin-top: 1.25rem;">
+            <div class="evaluation-header-row">
+              <div class="bubble-meta-pres" style="color:var(--yellow)">Evaluasi AI (Senior Web Architect)</div>
+              <span class="eval-score-pill">Skor: 45/100 (PERLU EVALUASI)</span>
+            </div>
+            <strong>Kritik:</strong> Jawaban Anda terlalu subjektif. Menyebut teknologi mapan industri seperti Redux "kuno/lambat" tanpa metrik terukur (seperti boilerplate overhead atau bundle footprint) menunjukkan kurangnya kedewasaan rekayasa software.<br><br>
+            <strong>Tips Perbaikan:</strong> Silakan coba lagi dan gunakan argumen teknis.
+          </div>
+        `;
+
+        chatStream.scrollTop = chatStream.scrollHeight;
+
+        // Update Score panel
+        setSlideCircularScore(45);
+        document.getElementById('slide-metric-theory').textContent = 'Cukup (50)';
+        document.getElementById('slide-metric-logic').textContent = 'Lemah (40)';
+        document.getElementById('slide-metric-maturity').textContent = 'Rendah (45)';
+        document.getElementById('slide-interview-tips').textContent = "Kritikan rekruter: Hindari mendiskreditkan library industri tanpa analisis komparatif performa.";
+
+        helperLabel.textContent = 'Skor Rendah. Coba Lagi dengan Opsi Lain:';
       }
     }
 
-    function closeProposalModal() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
+    function submitSlideCustomText() {
+      const textInput = document.getElementById('slide-custom-text-input');
+      if (!textInput) return;
+      const val = textInput.value.trim();
+      if (!val) return;
+
+      const chatStream = document.getElementById('slide-chat-stream');
+      const placeholder = document.getElementById('slide-chat-placeholder');
+      if (!chatStream || !placeholder) return;
+
+      // Append user custom text
+      const userBubble = document.createElement('div');
+      userBubble.className = 'message-bubble-pres user';
+      userBubble.style.marginTop = '1rem';
+      userBubble.innerHTML = `
+        <div class="bubble-meta-pres">Rian Wibowo</div>
+        ${val}
+      `;
+      chatStream.appendChild(userBubble);
+      textInput.value = '';
+      chatStream.scrollTop = chatStream.scrollHeight;
+
+      // Append AI response
+      setTimeout(() => {
+        const aiResponseBubble = document.createElement('div');
+        aiResponseBubble.className = 'message-bubble-pres evaluation';
+        aiResponseBubble.style.marginTop = '1.25rem';
+        aiResponseBubble.innerHTML = `
+          <div class="evaluation-header-row">
+            <div class="bubble-meta-pres">Evaluasi AI Akhir</div>
+            <span class="eval-score-pill" style="background:var(--green-glow); color:var(--green);">LULUS KUALIFIKASI (90/100)</span>
+          </div>
+          <strong>Umpan Balik Kelayakan:</strong> Anda berhasil menjelaskan penggunaan selectors untuk mencegah re-rendering yang tidak perlu secara detail. Simulasi Wawancara telah selesai.<br><br>
+          <strong>Hasil Kelayakan Kerja:</strong> Status Kesiapan Anda saat ini adalah <strong>Job-Ready (Junior Web Developer)</strong>. AI merekomendasikan Anda untuk langsung melamar lowongan magang industri terintegrasi.
+        `;
+        chatStream.appendChild(aiResponseBubble);
+
+        // Update score circles
+        setSlideCircularScore(90);
+        document.getElementById('slide-metric-theory').textContent = 'Sangat Bagus (92)';
+        document.getElementById('slide-metric-logic').textContent = 'Sangat Kuat (90)';
+        document.getElementById('slide-metric-maturity').textContent = 'Sangat Tinggi (88)';
+
+        const textInputField = document.getElementById('slide-text-input-field');
+        if (textInputField) textInputField.style.display = 'none';
+        document.getElementById('slide-input-helper').textContent = 'Simulasi Selesai';
+
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }, 1500);
     }
-
-    // Close modal on click outside content
-    modal.addEventListener('click', function(event) {
-      if (event.target === modal) {
-        closeProposalModal();
-      }
-    });
-
-    // Close modal on escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeProposalModal();
-      }
-    });
   </script>
 </body>
 
