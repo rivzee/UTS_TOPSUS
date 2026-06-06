@@ -17,7 +17,7 @@
 Banyak mahasiswa IT, khususnya di tingkat politeknik/vokasi, mengalami fenomena *tutorial hell* dan kebingungan arah belajar karena terlalu luasnya ekosistem teknologi. Kurikulum kampus yang bersifat umum dan lambat diperbarui sering kali menyisakan *skill gap* (kesenjangan keterampilan) yang besar dengan standar industri. Mahasiswa kesulitan mengukur apakah portofolio kode yang mereka bangun sudah memenuhi standar industri (*clean code, secure, scalable*) karena tidak adanya akses ke mentor profesional untuk melakukan *code review* personal secara berkala.
 
 * **Siapa Target Penggunanya?**
-  Mahasiswa aktif rumpun IT (Teknik Informatika, RPL, Sistem Informasi) Semester 6 yang sedang mempersiapkan diri untuk magang industri atau transisi ke dunia kerja profesional.
+  Mahasiswa aktif rumpun IT (Teknik Informatika, TRPL, Sistem Informasi) Semester 6 yang sedang mempersiapkan diri untuk magang industri atau transisi ke dunia kerja profesional.
 * **Seberapa Besar Masalah Tersebut?**
   Menurut data survei industri, lebih dari 65% lulusan baru IT memerlukan waktu pelatihan tambahan (*retraining*) selama 3-6 bulan setelah diterima kerja karena kode mereka belum berstandar industri.
 
@@ -278,7 +278,7 @@ Selama proses eksplorasi teknis, AI sempat menyarankan arsitektur *code executio
 Kami memverifikasinya dengan tiga cara:
 1. **Cross-Reference Industri:** Membandingkan peta jalan belajar (*learning path*) yang dibuat AI dengan standar kurikulum global dari platform terpercaya seperti *Roadmap.sh* dan standar rekrutmen perusahaan teknologi besar.
 2. **Pengujian Fungsional:** Menguji coba saran perbaikan kode (*code refactoring*) yang diberikan AI pada kompiler lokal untuk memastikan bahwa saran tersebut tidak merusak fungsionalitas aplikasi (*regression bug*).
-3. **Validasi Akademik:** Berdiskusi dengan dosen pembimbing akademik RPL untuk memastikan bahwa metode penilaian AI selaras dengan rubrik penilaian akademik kampus politeknik.
+3. **Validasi Akademik:** Berdiskusi dengan dosen pembimbing akademik TRPL untuk memastikan bahwa metode penilaian AI selaras dengan rubrik penilaian akademik kampus politeknik.
 
 ### 4. Jika teknologi AI generatif tidak tersedia, apa yang membedakan proyek ini dengan solusi yang ada?
 Tanpa adanya teknologi AI generatif, LearnIT Copilot akan berubah menjadi LMS (Learning Management System) pasif biasa seperti Moodle atau Google Classroom. Kehilangan AI berarti:
